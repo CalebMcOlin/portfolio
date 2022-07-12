@@ -1,34 +1,61 @@
 import './style.css'
 import * as THREE from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js' // temp
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js' // temp
 import * as dat from 'dat.gui' // temp
 
 // DEBUG 
 const gui = new dat.GUI(); // temp
 
+// LOADER
+const textureLoader = new THREE.TextureLoader();
+
 // SCENE
 const scene = new THREE.Scene();
 
-// CAMERA
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.setZ(50);
-
 // RENDERER
+const sizes = {
+  width: window.innerWidth,
+  height: window.innerHeight
+}
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
 });
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(window.devicePixelRatio, 2);
+
+// RESIZING
+window.addEventListener('resize', onWindowResize, false);
+function onWindowResize() {
+  // Update sizes
+  sizes.width = window.innerWidth;
+  sizes.height = window.innerHeight;
+  // Update camera
+  camera.aspect = sizes.width / sizes.height;
+  camera.updateProjectionMatrix();
+  // Update renderer
+  renderer.setSize(sizes.width, sizes.height);
+  renderer.setPixelRatio(window.devicePixelRatio, 2);
+}
+
+// CAMERA
+const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 1000);
+camera.position.setZ(2);
 
 // BACKGROUND
 const spaceTexture = new THREE.TextureLoader().load('./images/space.jpg');
 scene.background = spaceTexture;
 
 // OBJECTS
-// Torus
-const torus_geo = new THREE.TorusGeometry(13, 2, 30, 8);
-const torus_mat = new THREE.MeshStandardMaterial({ color: 0x9B00E8 });
-const torus = new THREE.Mesh(torus_geo, torus_mat);
+// sphere
+const sphere_geo = new THREE.SphereGeometry(0.5, 64, 64);
+const sphere_normal = textureLoader.load('/images/sphere-normal-map.jpg');
+const sphere_mat = new THREE.MeshStandardMaterial({
+  color: 0x292929,
+  metalness: 0.7,
+  roughness: 0.2,
+  normalMap: sphere_normal
+});
+const sphere = new THREE.Mesh(sphere_geo, sphere_mat);
 
 // LIGHTS
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -46,20 +73,14 @@ pointLight2.position.set(0, 0, 0);
 scene.add(pointLight1);
 scene.add(pointLight2);
 scene.add(ambientLight);
-scene.add(torus);
+scene.add(sphere);
 
 // ANIMATE
 function animate() {
-  requestAnimationFrame(animate);
-  renderer.render(scene, camera);
-}
+  sphere.rotation.y += 0.01;
 
-// RESIZING WINDOW
-window.addEventListener( 'resize', onWindowResize, false );
-function onWindowResize(){
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
 }
 
 animate();
