@@ -8,10 +8,40 @@ html, body {
   height: 100vh;
 }
 
-.bg {
+canvas {
   position: fixed;
   top: 0;
   left: 0;
   outline: none;
 }
+
+main {
+  height: 100vh;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+h1{
+  font-size: 8rem;
+  text-transform: uppercase;
+  color: white;
+}
+
+a {
+  background: yellow;
+}
+
+#contact-btn {
+  width: fit-content;
+  display: block;
+  margin: 10px auto 0 auto;
+  border: 1px solid #0E1027;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #0E1027;
+  padding: 5px 10px 5px 10px;
+  background: #CE546B;
+}
+
 
