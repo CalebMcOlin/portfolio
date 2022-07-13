@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from 'three';
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js' // temp
+import { gsap } from "gsap";
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js' // temp
 // import * as dat from 'dat.gui' // temp
 
 // DEBUG 
@@ -39,13 +40,28 @@ function onWindowResize() {
 
 // CAMERA
 const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 1000);
-camera.position.setZ(5);
+camera.position.x = 5;
 
 // BACKGROUND
 const spaceTexture = new THREE.TextureLoader().load('./images/space.jpg');
 scene.background = spaceTexture;
 
 // OBJECTS
+// plane
+const plane_geo = new THREE.PlaneGeometry(1000, 1000, 70, 70);
+const plane_height = textureLoader.load('/images/plane-displacement-map.jpg');
+const plane_mat = new THREE.MeshStandardMaterial({
+  color: 0x292929,
+  // metalness: 1,
+  roughness: 0.2,
+  displacementMap: plane_height,
+  displacementScale: 110,
+  displacementBias: -55
+});
+const plane = new THREE.Mesh(plane_geo, plane_mat);
+plane.rotation.x = (Math.PI / -2);
+plane.position.y = -5;
+
 // sphere
 const sphere_geo = new THREE.SphereGeometry(1, 64, 64);
 const sphere_normal = textureLoader.load('/images/sphere-normal-map.jpg');
@@ -58,9 +74,10 @@ const sphere_mat = new THREE.MeshStandardMaterial({
 const sphere = new THREE.Mesh(sphere_geo, sphere_mat);
 
 const sphere2 = new THREE.Mesh(sphere_geo, sphere_mat); // temp
-sphere2.position.set(4, 0, 0); //temp
+sphere2.position.set(134.5, -28.2, -103.6); //temp
 
 // LIGHTS
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
 const pointLight1 = new THREE.PointLight(0x8709b5, 5);
 const pointLight2 = new THREE.PointLight(0xe0a919, 6.5);
 const pointLight3 = new THREE.PointLight(0xffffff, 0.2)
@@ -100,15 +117,28 @@ pointLight3.position.set(2.3, 0, 5.5);
 // light3.add(pointLight3.position, 'z').min(-10).max(10).step(0.01); // temp
 // light3.add(pointLight3, 'intensity').min(0).max(10).step(0.01); // temp
 // const light3Color = { color: 0xffffff }; // temp
-// light3.addColor(light3Color, 'color').onChange(() =>{
-//   pointLight3.color.set(light3Color.color)
+// light3.addColor(light3Color, 'color').onChange(() =>{ // temp
+//   pointLight3.color.set(light3Color.color) // temp
 // }); // temp
-// const controls = new OrbitControls( camera, renderer.domElement ); // temp
+
+// locate camera
+const controls = new OrbitControls(camera, renderer.domElement); // temp
+controls.enableDamping = true; // temp
+// window.addEventListener("click", clicking, false); // temp
+// function clicking() { // temp
+//   console.log("x " + camera.position.x); // temp
+//   console.log("y " + camera.position.y); // temp
+//   console.log("z " + camera.position.z); // temp
+// } // temp
+
+
 
 // Add OBJECTS and LIGHTS to SCENE
+scene.add(ambientLight);
 scene.add(pointLight1);
 scene.add(pointLight2);
 scene.add(pointLight3);
+scene.add(plane);
 scene.add(sphere);
 scene.add(sphere2); // temp
 
@@ -117,12 +147,40 @@ function animate() {
   sphere.rotation.y -= 0.01;
   sphere2.rotation.y += 0.01; //temp
   renderer.render(scene, camera);
-  // controls.update(); // temp
+  controls.update(); // temp
   requestAnimationFrame(animate);
 }
 
-function moveCamera(){
+document.getElementById('fw-btn').addEventListener("click", moveForward, false);
+document.getElementById('bk-btn').addEventListener("click", moveBack, false);
+function moveForward() {
+  gsap.to(camera.position, {
+    x: sphere2.position.x + 7,
+    duration: 2
+  })
+  gsap.to(camera.position, {
+    y: sphere2.position.y - 2,
+    duration: 2
+  })
+  gsap.to(camera.position, {
+    z: sphere2.position.z - 5,
+    duration: 2
+  })
+}
 
+function moveBack() {
+  gsap.to(camera.position, {
+    x: sphere.position.x + 5,
+    duration: 2
+  })
+  gsap.to(camera.position, {
+    y: sphere.position.y + 5,
+    duration: 2
+  })
+  gsap.to(camera.position, {
+    z: sphere.position.z + 5,
+    duration: 2
+  })
 }
 
 animate();
