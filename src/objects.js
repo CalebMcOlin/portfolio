@@ -23,6 +23,8 @@ export function createSphere(name,rad, col, met, rou, normal, pos) {
         normalMap: sphere_normal
     });
     const sphere = new THREE.Mesh(sphere_geo, sphere_mat);
+    sphere.castShadow = true;
+    sphere.receiveShadow = true;
     sphere.position.set(pos.x, pos.y, pos.z);
     return sphere;
 };
@@ -41,17 +43,19 @@ export function createSphere(name,rad, col, met, rou, normal, pos) {
  * @param {number} dis_scale `number`: Changes the scale of the displacement
  * @param {number} dis_bias `number`: Changes the bias of the displacement
  * @param {Object} pos `Object`: [x: #, y: #, z: #] cordinates for the plane.
+ * @param {boolean} isWireframe `boolean`: Determines if the plane is a wireframe or not.
  */
-export function createPlane(width, height, widthSegments, heightSegments, col, met, rou, dis_map, dis_scale, dis_bias, pos) {
+export function createPlane(width, height, widthSegments, heightSegments, col, met, rou, dis_map, dis_scale, dis_bias, pos, isWireframe) {
     const plane_geo = new THREE.PlaneGeometry(width, height, widthSegments, heightSegments);
     const plane_height = textureLoader.load('' + dis_map);
     const plane_mat = new THREE.MeshStandardMaterial({
         color: col,
-        // metalness: met,
+        metalness: met,
         roughness: rou,
         displacementMap: plane_height,
         displacementScale: dis_scale,
-        displacementBias: dis_bias
+        displacementBias: dis_bias,
+        wireframe: isWireframe
     });
     const plane = new THREE.Mesh(plane_geo, plane_mat);
     plane.rotation.x = (Math.PI / -2);

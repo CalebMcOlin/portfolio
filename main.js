@@ -1,9 +1,8 @@
 import './style.css'
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { createAmbientLight, createPointLight } from './src/lights';
+import { createAmbientLight, createPointLight, createRectLight } from './src/lights';
 import { createSphere, createPlane, createBackground } from './src/objects';
-// import { moveToFirst, moveToSecond } from './src/movements';
 import { gsap } from "gsap";
 
 // SCENE
@@ -17,12 +16,14 @@ const sizes = {
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
 });
+// renderer.shadowMap.enabled = false;
+// renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(window.devicePixelRatio, 2);
 
 // CAMERA
 export const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 1000);
-camera.position.x = 5;
+camera.position.set(83, -1, -94);
 
 // RESIZING
 window.addEventListener('resize', onWindowResize, false);
@@ -39,24 +40,29 @@ function onWindowResize() {
 }
 
 // OBJECTS
-const plane = createPlane(1000, 1000, 70, 70, 0x292929, 1, 0.2, '/images/plane-displacement-map.jpg', 110, -55, { x: 0, y: -5, z: 0 });
-const sphere1 = createSphere("Sphere 1", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 0, y: 0, z: 0 });
-const sphere2 = createSphere("Sphere 2", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 134.5, y: -28.2, z: -103.6 });
-const pLight1 = createPointLight(0x8709b5, 5, { x: 4, y: 3.89, z: -6.34 });
-const pLight2 = createPointLight(0xe0a919, 6.5, { x: -3.06, y: -3.28, z: -4.57 });
-const pLight3 = createPointLight(0xffffff, 0.2, { x: 2.3, y: 0, z: 5.5 });
-const aLight1 = createAmbientLight(0xffffff, 0.5)
+const plane = createPlane(800, 800, 100, 100, 0x292929, 0, 0, '/images/plane-displacement.jpg', 110, -55, { x: 0, y: -5, z: 0 }, false);
+const planeGrid = createPlane(800, 800, 100, 100, 0x035ee8, 0, 0, '/images/plane-displacement.jpg', 110, -55, { x: 0, y: -5, z: 0 }, true);
+const sphere1 = createSphere("Sphere 1", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 79, y: -1, z: -90 });
+const sphere2 = createSphere("Sphere 2", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 134.5, y: -28.2, z: -13.6 });
+
+// LIGHTS
+const aLight1 = createAmbientLight(0xffffff, .6);
+const rLight1 = createRectLight(0x9700CC, 1000, 1000, 1, { x: 0, y: -59.9, z: 0 }, { x: 0, y: -100, z: 0 });
+const pLight1 = createPointLight(0x9700cc, 10, { x: 11, y: -33, z: -100 });
+const pLight2 = createPointLight(0xe0a919, 0, { x: -3.1, y: 50, z: -4.6 });
+const pLight3 = createPointLight(0xffffff, 0, { x: 2.3, y: 0, z: 5.5 });
 
 // ADD TO SCENE
 scene.background = createBackground();
 scene.add(plane);
+scene.add(planeGrid);
 scene.add(sphere1);
 scene.add(sphere2);
-scene.add(pLight1);
-scene.add(pLight2);
-scene.add(pLight3);
+scene.add(rLight1);
 scene.add(aLight1);
-
+// scene.add(pLight1);
+// scene.add(pLight2);
+// scene.add(pLight3);
 
 // MOVEMENTS
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -78,7 +84,6 @@ function moveToSphere(target) {
     duration: 2
   })
 };
-
 
 // ANIMATE LOOP
 function animate() {
@@ -104,27 +109,27 @@ function lightDebugHelper(light1, light2, light3) {
 
   // GUI interface
   const lightFolder1 = gui.addFolder('Light 1');
-  lightFolder1.add(light1.position, 'x').min(-5).max(5).step(0.01);
-  lightFolder1.add(light1.position, 'y').min(-5).max(5).step(0.01);
-  lightFolder1.add(light1.position, 'z').min(-10).max(10).step(0.01);
+  lightFolder1.add(light1.position, 'x').min(-1000).max(1000).step(0.5);
+  lightFolder1.add(light1.position, 'y').min(-1000).max(1000).step(0.5);
+  lightFolder1.add(light1.position, 'z').min(-1000).max(1000).step(0.5);
   lightFolder1.add(light1, 'intensity').min(0).max(10).step(0.01);
   const light1Color = { color: 0xffffff };
   lightFolder1.addColor(light1Color, 'color').onChange(() => {
     light1.color.set(light1Color.color)
   });
   const lightFolder2 = gui.addFolder('Light 2');
-  lightFolder2.add(light2.position, 'x').min(-5).max(5).step(0.01);
-  lightFolder2.add(light2.position, 'y').min(-5).max(5).step(0.01);
-  lightFolder2.add(light2.position, 'z').min(-10).max(10).step(0.01);
+  lightFolder2.add(light2.position, 'x').min(-1000).max(1000).step(0.5);
+  lightFolder2.add(light2.position, 'y').min(-1000).max(1000).step(0.5);
+  lightFolder2.add(light2.position, 'z').min(-1000).max(1000).step(0.5);
   lightFolder2.add(light2, 'intensity').min(0).max(10).step(0.01);
   const light2Color = { color: 0xffffff };
   lightFolder2.addColor(light2Color, 'color').onChange(() => {
     light2.color.set(light2Color.color)
   });
   const lightFolder3 = gui.addFolder('Light 3');
-  lightFolder3.add(light3.position, 'x').min(-5).max(5).step(0.01);
-  lightFolder3.add(light3.position, 'y').min(-5).max(5).step(0.01);
-  lightFolder3.add(light3.position, 'z').min(-10).max(10).step(0.01);
+  lightFolder3.add(light3.position, 'x').min(-1000).max(1000).step(0.5);
+  lightFolder3.add(light3.position, 'y').min(-1000).max(1000).step(0.5);
+  lightFolder3.add(light3.position, 'z').min(-1000).max(1000).step(0.5);
   lightFolder3.add(light3, 'intensity').min(0).max(10).step(0.01);
   const light3Color = { color: 0xffffff };
   lightFolder3.addColor(light3Color, 'color').onChange(() => {
