@@ -41,7 +41,7 @@ function onWindowResize() {
 // OBJECTS
 const plane = createPlane(1000, 1000, 70, 70, 0x292929, 1, 0.2, '/images/plane-displacement-map.jpg', 110, -55, { x: 0, y: -5, z: 0 });
 const sphere1 = createSphere("Sphere 1", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 0, y: 0, z: 0 });
-const sphere2 = createSphere("Sphere 1", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 134.5, y: -28.2, z: -103.6 });
+const sphere2 = createSphere("Sphere 2", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 134.5, y: -28.2, z: -103.6 });
 const pLight1 = createPointLight(0x8709b5, 5, { x: 4, y: 3.89, z: -6.34 });
 const pLight2 = createPointLight(0xe0a919, 6.5, { x: -3.06, y: -3.28, z: -4.57 });
 const pLight3 = createPointLight(0xffffff, 0.2, { x: 2.3, y: 0, z: 5.5 });
