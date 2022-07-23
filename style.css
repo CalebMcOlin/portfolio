@@ -33,7 +33,7 @@ h1{
 a {
   background: yellow;
 }
-#bk-btn, #fw-btn {
+#btn-1, #btn-2, #btn-3 {
   width: fit-content;
   display: block;
   margin: 10px auto 0 auto;

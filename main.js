@@ -23,7 +23,7 @@ renderer.setPixelRatio(window.devicePixelRatio, 2);
 
 // CAMERA
 export const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 1000);
-camera.position.set(83, -1, -94);
+camera.position.set(100, 0, 0);
 
 // RESIZING
 window.addEventListener('resize', onWindowResize, false);
@@ -42,8 +42,9 @@ function onWindowResize() {
 // OBJECTS
 const plane = createPlane(800, 800, 100, 100, 0x292929, 0, 0, '/images/plane-displacement.jpg', 110, -55, { x: 0, y: -5, z: 0 }, false);
 const planeGrid = createPlane(800, 800, 100, 100, 0x035ee8, 0, 0, '/images/plane-displacement.jpg', 110, -55, { x: 0, y: -5, z: 0 }, true);
-const sphere1 = createSphere("Sphere 1", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 79, y: -1, z: -90 });
+const sphere1 = createSphere("Sphere 1", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: -20, y: -20, z: -20 });
 const sphere2 = createSphere("Sphere 2", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 134.5, y: -28.2, z: -13.6 });
+const sphere3 = createSphere("Sphere 3", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: -200, y: 10, z: 27 });
 
 // LIGHTS
 const aLight1 = createAmbientLight(0xffffff, .6);
@@ -58,6 +59,7 @@ scene.add(plane);
 scene.add(planeGrid);
 scene.add(sphere1);
 scene.add(sphere2);
+scene.add(sphere3);
 scene.add(rLight1);
 scene.add(aLight1);
 // scene.add(pLight1);
@@ -67,28 +69,53 @@ scene.add(aLight1);
 // MOVEMENTS
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-document.getElementById('fw-btn').addEventListener("click", (event) => { moveToSphere(sphere2, event); }, false);
-document.getElementById('bk-btn').addEventListener("click", (event) => { moveToSphere(sphere1, event); }, false);
 
-function moveToSphere(target) {
+document.getElementById('btn-1').addEventListener("click", (event) => { moveToSphere(sphere1, { x: 0, y: 0, z: 0 }, event); }, false);
+document.getElementById('btn-2').addEventListener("click", (event) => { moveToSphere(sphere2, { x: 0, y: 0, z: 0 }, event); }, false);
+document.getElementById('btn-3').addEventListener("click", (event) => { moveToSphere(sphere3, { x: -30, y: -120, z: -90 }, event); }, false);
+
+function moveToSphere(targetPos, focalPos) {
+  // Setting up for vector and postion caculation
+  const cameraLoc = new THREE.Vector3(); // Camera's position behind the target
+  const dir = new THREE.Vector3(); // The vector between the center of 3D map and target.
+  const unitsFromTarget = 6; // units camera is from the target
+  const focalLoc = new THREE.Vector3(focalPos.x, focalPos.y, focalPos.z); // focal point behind the target (set at center of 3D map)
+  const targetLoc = targetPos.position; // Target's position
+
+  // Caclating the position of the camera behing the targets location on the same vector as the target and center of 3D map
+  cameraLoc.addVectors(targetLoc, dir.subVectors(targetLoc, focalLoc).normalize().multiplyScalar(unitsFromTarget));
+
+  // Animate movement/position of camera
   gsap.to(camera.position, {
-    x: target.position.x + 7,
-    duration: 2
-  })
+    x: cameraLoc.x,
+    duration: 4
+  });
   gsap.to(camera.position, {
-    y: target.position.y - 2,
-    duration: 2
-  })
+    y: cameraLoc.y,
+    duration: 4
+  });
   gsap.to(camera.position, {
-    z: target.position.z - 5,
-    duration: 2
-  })
+    z: cameraLoc.z,
+    duration: 4
+  });
+
+  // Animate aim of camera
+  gsap.to(controls.target, {
+    x: focalLoc.x,
+    duration: 4
+  });
+  gsap.to(controls.target, {
+    y: focalLoc.y,
+    duration: 4
+  });
+  gsap.to(controls.target, {
+    z: focalLoc.z,
+    duration: 4
+  });
 };
 
 // ANIMATE LOOP
 function animate() {
-  // sphere1.rotation.y -= 0.01;
-  // sphere2.rotation.y += 0.01;
   renderer.render(scene, camera);
   controls.update();
   requestAnimationFrame(animate);
