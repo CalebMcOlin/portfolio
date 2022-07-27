@@ -22,7 +22,7 @@ export function createAmbientLight(color, intensity) {
  */
 export function createPointLight(color, intensity, distance, decay, pos) {
     const pointLight = new THREE.PointLight(color, intensity, distance, decay);
-    pointLight.castShadow = true;
+    // pointLight.castShadow = true;
     pointLight.position.set(pos.x, pos.y, pos.z);
     return pointLight;
 };

@@ -24,8 +24,8 @@ export function createSphere(name, rad, col, met, rou, normal, pos) {
         normalMap: sphere_normal
     });
     const sphere = new THREE.Mesh(sphere_geo, sphere_mat);
-    sphere.castShadow = true;
-    sphere.receiveShadow = true;
+    // sphere.castShadow = true;
+    // sphere.receiveShadow = true;
     sphere.position.set(pos.x, pos.y, pos.z);
     return sphere;
 };
@@ -88,8 +88,8 @@ export function createTorus(name, rad, thick, radSeg, thickSeg, col, met, rou, p
         // normalMap: sphere_normal
     });
     const torus = new THREE.Mesh(torus_geo, torus_mat);
-    torus.castShadow = true;
-    torus.receiveShadow = true;
+    // torus.castShadow = true;
+    // torus.receiveShadow = true;
     torus.position.set(pos.x, pos.y, pos.z);
     torus.rotation.x = (Math.PI / -2);
     return torus;
