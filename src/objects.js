@@ -48,7 +48,12 @@ export function createSphere(name, rad, col, met, rou, normal, pos) {
  */
 export function createPlane(width, height, widthSegments, heightSegments, col, met, rou, dis_map, dis_scale, dis_bias, pos, isWireframe) {
     const plane_geo = new THREE.PlaneGeometry(width, height, widthSegments, heightSegments);
-    const plane_height = textureLoader.load('' + dis_map);
+    let plane_height;
+    if (dis_map === '') {
+        plane_height = undefined;
+    } else {
+        plane_height = textureLoader.load('' + dis_map);
+    }
     const plane_mat = new THREE.MeshStandardMaterial({
         color: col,
         metalness: met,

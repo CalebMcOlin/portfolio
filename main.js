@@ -23,7 +23,7 @@ renderer.setPixelRatio(window.devicePixelRatio, 2);
 
 // CAMERA
 export const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 1000);
-camera.position.set(-105, 30, 39);
+camera.position.set(-0.5, 456, -1);
 
 // RESIZING
 window.addEventListener('resize', onWindowResize, false);
@@ -40,44 +40,55 @@ function onWindowResize() {
 }
 
 // OBJECTS
-const plane = createPlane(1000, 1000, 100, 100, 0x292929, 0, 0, '/images/plane-hightmap.png', 110, -55, { x: 0, y: -5, z: 0 }, false);
-const planeGrid = createPlane(1000, 1000, 100, 100, 0x035ee8, 0, 0, '/images/plane-hightmap.png', 110, -55, { x: 0, y: -5, z: 0 }, true);
+const plane = createPlane(1000, 1000, 100, 100, 0x292929, 0.5, 0.5, '/images/plane-hightmap.png', 110, -55, { x: 0, y: -5, z: 0 }, false);
+const planeGrid = createPlane(1000, 1000, 100, 100, 0x290CFF, 0, 0, '/images/plane-hightmap.png', 110, -55, { x: 0, y: -5, z: 0 }, true);
+const planeFlat = createPlane(1000, 1000, 1, 1, 0x000000, 0, 0, '', 0, 0, { x: 0, y: -59.5, z: 0 }, false);
+const planeFlatGrid = createPlane(1000, 1000, 100, 100, 0xFF019A, 0, 0, '', 0, 0, { x: -59.5, y: -59, z: 0 }, true);
 const sphere1 = createSphere("Sphere 1", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: -20, y: -20, z: -20 });
-const sphere2 = createSphere("Sphere 2", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 134.5, y: -28.2, z: -13.6 });
+const sphere2 = createSphere("Sphere 2", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: -180, y: 40, z: -30 });
 const sphere3 = createSphere("Sphere 3", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: -200, y: 10, z: 27 });
+const sphere4 = createSphere("Sphere 3", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 96, y: -30, z: 186 });
+const sphere5 = createSphere("Sphere 3", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 0, y: 450, z: 0 });
 const torus = createTorus("Torus", 35, 2, 20, 64, 0xfff000, 0.5, 0.5, { x: 108, y: 40, z: 38 });
 
 // LIGHTS
 const aLight1 = createAmbientLight(0xffffff, .6);
-const rLight1 = createRectLight(0x9700CC, 1000, 1000, 1, { x: 0, y: -59.9, z: 0 }, { x: 0, y: -100, z: 0 });
+// const rLight1 = createRectLight(0x9700CC, 1000, 1000, 1, { x: 0, y: -59.9, z: 0 }, { x: 0, y: -100, z: 0 });
 const torusLight = createPointLight(0xfff000, 2.8, 85, 2.5, { x: 112, y: 51, z: 37 });
 
 // ADD TO SCENE
 scene.background = createBackground();
 scene.add(plane);
 scene.add(planeGrid);
+scene.add(planeFlat);
+scene.add(planeFlatGrid);
 scene.add(torus);
 scene.add(sphere1);
 scene.add(sphere2);
 scene.add(sphere3);
+scene.add(sphere4);
+// scene.add(sphere5); // Temp HOME
 scene.add(aLight1);
-scene.add(rLight1);
+// scene.add(rLight1); // Not needed with PlaneFlat. Might replace
 scene.add(torusLight);
 
 // MOVEMENTS
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.target.set(105, 30, 39);
+controls.target.set(30, 50, 70);
 
-document.getElementById('btn-1').addEventListener("click", (event) => { moveToSphere(sphere1, { x: 0, y: 0, z: 0 }, event); }, false);
-document.getElementById('btn-2').addEventListener("click", (event) => { moveToSphere(sphere2, { x: 0, y: 0, z: 0 }, event); }, false);
-document.getElementById('btn-3').addEventListener("click", (event) => { moveToSphere(sphere3, { x: -30, y: -120, z: -90 }, event); }, false);
+document.getElementById('btn-1').addEventListener("click", (event) => { moveToSphere(sphere1, { x: 0, y: 0, z: 0 }, 6, event); }, false);
+document.getElementById('btn-2').addEventListener("click", (event) => { moveToSphere(sphere2, { x: 0, y: 0, z: 0 }, 6, event); }, false);
+document.getElementById('btn-3').addEventListener("click", (event) => { moveToSphere(sphere3, { x: -30, y: 0, z: -90 }, 6, event); }, false);
+document.getElementById('btn-4').addEventListener("click", (event) => { moveToSphere(sphere4, { x: 216, y: 50, z: 31 }, 6, event); }, false);
+document.getElementById('btn-5').addEventListener("click", (event) => { moveToSphere(sphere5, { x: 30, y: 50, z: 70 }, 6, event); }, false);
 
-function moveToSphere(targetPos, focalPos) {
+
+function moveToSphere(targetPos, focalPos, distFrom) {
   // Setting up for vector and postion caculation
   const cameraLoc = new THREE.Vector3(); // Camera's position behind the target
   const dir = new THREE.Vector3(); // The vector between the center of 3D map and target.
-  const unitsFromTarget = 6; // units camera is from the target
+  const unitsFromTarget = distFrom; // units camera is from the target
   const focalLoc = new THREE.Vector3(focalPos.x, focalPos.y, focalPos.z); // focal point behind the target (set at center of 3D map)
   const targetLoc = targetPos.position; // Target's position
 
@@ -177,7 +188,15 @@ function lightDebugHelper(light1, light2, light3) {
   };
 };
 // lightDebugHelper(pLight1, pLight2, pLight3);
+window.addEventListener("click", clicking, false);
+function clicking() {
+  console.log("x " + camera.position.x);
+  console.log("y " + camera.position.y);
+  console.log("z " + camera.position.z);
+};
+
 // DEBUG ** DEVELOPMENT USE ONLY ** DEBUG //
+
 
 
 animate();

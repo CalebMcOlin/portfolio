@@ -23,17 +23,17 @@ main {
 }
 
 h1{
+  text-align:center;
   font-size: 8rem;
   text-transform: uppercase;
   color: white;
 }
 
-
-/* temp */
-a {
-  background: yellow;
+#buttons {
+  display: flex;
 }
-#btn-1, #btn-2, #btn-3 {
+
+#btn-1, #btn-2, #btn-3, #btn-4, #btn-5 {
   width: fit-content;
   display: block;
   margin: 10px auto 0 auto;
@@ -44,5 +44,4 @@ a {
   padding: 5px 10px 5px 10px;
   background: #CE546B;
 }
-/* temp */
 
