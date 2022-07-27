@@ -16,11 +16,12 @@ export function createAmbientLight(color, intensity) {
  * @param {color} color Numeric value of the RGB component of the color or a Color instance.
  * @param {number} intensity Of the light
  * @param {Object} pos `Object`: [x: #, y: #, z: #] cordinates for the light.
+ * @param {number} distance `number` Maximum range of the light. Default is 0 (no limit). 
+ * @param {number} decay `number` The amount the light dims along the distance of the light. Default is 1
  * @returns The `PointLight`
  */
-export function createPointLight(color, intensity, pos) {
-    const pointLight = new THREE.PointLight(color, intensity);
-    pointLight.decay = 1;
+export function createPointLight(color, intensity, distance, decay, pos) {
+    const pointLight = new THREE.PointLight(color, intensity, distance, decay);
     pointLight.castShadow = true;
     pointLight.position.set(pos.x, pos.y, pos.z);
     return pointLight;
