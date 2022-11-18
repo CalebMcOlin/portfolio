@@ -15,25 +15,59 @@ canvas {
   outline: none;
 }
 
-main {
-  height: 100vh;
+#wrapper {
   position: relative;
-  display: grid;
-  place-items: center;
-}
-
-h1{
-  text-align:center;
-  font-size: 8rem;
-  text-transform: uppercase;
-  color: white;
-}
-
-#buttons {
+  height: 100vh;
   display: flex;
+  justify-content: space-between;
+  place-items: center;
+
+  /* Testing */
+  border: 2px dashed pink;
 }
 
-#btn-1, #btn-2, #btn-3, #btn-4, #btn-5 {
+.navBtn {
+  /* Testing */
+  border: 2px dashed green;
+  background: yellow;
+}
+
+#btn-R {
+  margin-right: 2%;
+}
+
+#btn-L {
+  margin-left: 2%;
+}
+
+main {
+  position: absolute;
+  width: 75%;
+  height: 85%;
+  top: 5%;
+  bottom: 10%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+
+  /* Testing */
+  background: rgb(14, 16, 39, .7);
+  border: 2px dashed red;
+}
+
+.navBar {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  display: flex;
+
+  /* Testing */
+  border: 1px dashed white;
+}
+
+.navBarBtn {
   width: fit-content;
   display: block;
   margin: 10px auto 0 auto;
@@ -43,5 +77,18 @@ h1{
   color: #0E1027;
   padding: 5px 10px 5px 10px;
   background: #CE546B;
+
+  /* Testing */
+  border: 1px dashed red;
 }
 
+
+h1 {
+  text-align: center;
+  font-size: 8rem;
+  text-transform: uppercase;
+  color: white;
+
+  /* Testing */
+  border: 1px dashed white;
+}
