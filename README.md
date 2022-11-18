@@ -47,6 +47,8 @@ I wanted to create something that would not only showcase my skills as a develop
 ### Built With
 
 - [ViteJS](https://vitejs.dev/)
+- [ThreeJS](https://threejs.org/)
+- [bootstrap-icons](https://icons.getbootstrap.com/)
    
 <!-- Features -->
 ## Features
