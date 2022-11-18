@@ -23,13 +23,18 @@ canvas {
   place-items: center;
 
   /* Testing */
-  border: 2px dashed pink;
+  /* border: 2px dashed pink; */
 }
 
-.navBtn {
+.navBtn img {
   /* Testing */
-  border: 2px dashed green;
-  background: yellow;
+  background: lightgray;
+  border-radius: 50%;
+  width: 50px;
+}
+
+.navBtn img:hover {
+  background: grey;
 }
 
 #btn-R {
@@ -52,36 +57,34 @@ main {
 
   /* Testing */
   background: rgb(14, 16, 39, .7);
-  border: 2px dashed red;
+  /* border: 2px dashed red; */
 }
 
 .navBar {
   position: absolute;
-  bottom: 2%;
+  max-width: 300px;
+  width: 75%;
+  bottom: 4%;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   display: flex;
+  justify-content: space-between;
 
   /* Testing */
-  border: 1px dashed white;
+  /* border: 1px dashed white; */
 }
 
 .navBarBtn {
-  width: fit-content;
-  display: block;
-  margin: 10px auto 0 auto;
-  border: 1px solid #0E1027;
-  border-radius: 5px;
-  text-decoration: none;
-  color: #0E1027;
-  padding: 5px 10px 5px 10px;
-  background: #CE546B;
-
-  /* Testing */
-  border: 1px dashed red;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
 }
 
+.navBarBtn:hover {
+  background-color: grey;
+}
 
 h1 {
   text-align: center;
@@ -90,5 +93,5 @@ h1 {
   color: white;
 
   /* Testing */
-  border: 1px dashed white;
+  /* border: 1px dashed white; */
 }
