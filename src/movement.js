@@ -18,37 +18,37 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
 
   // Each object's move funtions
   function moveToSlide1() {
-    move(sphere1, { x: 0, y: 0, z: 0 }, 6);
+    move(sphere1, { x: 0, y: 0, z: 0 }, 6, "slide-1");
     slideIndex = 1;
     document.getElementById("btn-1").style.backgroundColor = "purple";
   };
 
   function moveToSlide2() {
-    move(sphere2, { x: 0, y: 0, z: 0 }, 6);
+    move(sphere2, { x: 0, y: 0, z: 0 }, 6, "slide-2");
     slideIndex = 2;
     document.getElementById("btn-2").style.backgroundColor = "purple";
   };
 
   function moveToSlide3() {
-    move(sphere3, { x: -30, y: 0, z: -90 }, 6);
+    move(sphere3, { x: -30, y: 0, z: -90 }, 6, "slide-3");
     slideIndex = 3;
     document.getElementById("btn-3").style.backgroundColor = "purple";
   };
 
   function moveToSlide4() {
-    move(sphere4, { x: 216, y: 50, z: 31 }, 6);
+    move(sphere4, { x: 216, y: 50, z: 31 }, 6, "slide-4");
     slideIndex = 4;
     document.getElementById("btn-4").style.backgroundColor = "purple";
   };
 
   function moveToSlide5() {
-    move(sphere5, { x: 30, y: 40, z: 0 }, 6);
+    move(sphere5, { x: 30, y: 40, z: 0 }, 6, "slide-5");
     slideIndex = 5;
     document.getElementById("btn-5").style.backgroundColor = "purple";
   };
 
   function moveToSlide6() {
-    move(sphere6, { x: 30, y: -30, z: 100 }, 6);
+    move(sphere6, { x: 30, y: -30, z: 100 }, 6, "slide-6");
     slideIndex = 6;
     document.getElementById("btn-6").style.backgroundColor = "purple";
   };
@@ -102,10 +102,10 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
   };
 
   // Moves the camera to the given Object3D
-  function move(targetPos, focalPos, distFrom) {
+  function move(targetPos, focalPos, distFrom, currentSlide) {
 
-    // Hide the slide
-    document.getElementById("slide").hidden = true;
+    // Hide the slides
+    hideSlidesDisplay();
 
     // Reset all nav button colors
     resetNavColor();
@@ -148,8 +148,10 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
       duration: 4
     })
       .eventCallback("onComplete", function () {
-        // Show the slide when movement stops.
-        document.getElementById("slide").hidden = false;
+        // Temp fix to having slides overlap when changing too quickly.
+        hideSlidesDisplay();
+        // Show only the current slide when movement stops.
+        document.getElementById(currentSlide).style.display = 'block';
       });
   };
 
@@ -158,6 +160,14 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     let elements = document.getElementsByClassName("navBarBtn"); // get all elements
     for (let i = 0; i < elements.length; i++) {
       elements[i].style.backgroundColor = "white";
+    };
+  };
+
+  // sets all Slides to display: none
+  function hideSlidesDisplay() {
+    let elements = document.getElementsByClassName("slides"); // get all elements
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].style.display = "none";
     };
   };
 

@@ -45,7 +45,7 @@ canvas {
   margin-left: 2%;
 }
 
-#slide {
+.slides {
   position: absolute;
   width: 75%;
   height: 85%;
