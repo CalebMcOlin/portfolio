@@ -1,9 +1,9 @@
-import './style.css'
+import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { createAmbientLight, createPointLight, createRectLight } from './src/lights';
 import { createSphere, createPlane, createBackground, createTorus } from './src/objects';
-import { gsap } from "gsap";
+import { movments } from './src/movement';
 
 // SCENE
 export const scene = new THREE.Scene();
@@ -23,7 +23,7 @@ renderer.setPixelRatio(window.devicePixelRatio, 2);
 
 // CAMERA
 export const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 1000);
-camera.position.set(-0.5, 456, -1);
+camera.position.set(292, -38.7, -157.8); // Sphere1 Location
 
 // RESIZING
 window.addEventListener('resize', onWindowResize, false);
@@ -44,11 +44,12 @@ const plane = createPlane(1000, 1000, 100, 100, 0x292929, 0.5, 0.5, '/images/pla
 const planeGrid = createPlane(1000, 1000, 100, 100, 0x290CFF, 0, 0, '/images/plane-hightmap.png', 110, -55, { x: 0, y: -5, z: 0 }, true);
 const planeFlat = createPlane(1000, 1000, 1, 1, 0x000000, 0, 0, '', 0, 0, { x: 0, y: -59.5, z: 0 }, false);
 const planeFlatGrid = createPlane(1000, 1000, 100, 100, 0xFF019A, 0, 0, '', 0, 0, { x: -59.5, y: -59, z: 0 }, true);
-const sphere1 = createSphere("Sphere 1", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: -20, y: -20, z: -20 });
+const sphere1 = createSphere("Sphere 5", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 287, y: -38, z: -155 });
 const sphere2 = createSphere("Sphere 2", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: -180, y: 40, z: -30 });
 const sphere3 = createSphere("Sphere 3", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: -200, y: 10, z: 27 });
-const sphere4 = createSphere("Sphere 3", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 96, y: -30, z: 186 });
-const sphere5 = createSphere("Sphere 3", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 0, y: 450, z: 0 });
+const sphere4 = createSphere("Sphere 4", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: 96, y: -30, z: 186 });
+const sphere5 = createSphere("Sphere 1", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: -20, y: -20, z: -20 });
+const sphere6 = createSphere("Sphere 6", 0.5, 0x292929, 1, 0.2, './images/sphere-normal-map.jpg', { x: -209, y: -43, z: -253 });
 const torus = createTorus("Torus", 35, 2, 20, 64, 0xfff000, 0.5, 0.5, { x: 108, y: 40, z: 38 });
 
 // LIGHTS
@@ -67,7 +68,8 @@ scene.add(sphere1);
 scene.add(sphere2);
 scene.add(sphere3);
 scene.add(sphere4);
-// scene.add(sphere5); // Temp HOME
+scene.add(sphere5);
+scene.add(sphere6);
 scene.add(aLight1);
 // scene.add(rLight1); // Not needed with PlaneFlat. Might replace
 scene.add(torusLight);
@@ -75,54 +77,8 @@ scene.add(torusLight);
 // MOVEMENTS
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.target.set(30, 50, 70);
+movments(camera, controls, sphere1, sphere2, sphere3, sphere4, sphere5, sphere6);
 
-document.getElementById('btn-1').addEventListener("click", (event) => { moveToSphere(sphere1, { x: 0, y: 0, z: 0 }, 6, event); }, false);
-document.getElementById('btn-2').addEventListener("click", (event) => { moveToSphere(sphere2, { x: 0, y: 0, z: 0 }, 6, event); }, false);
-document.getElementById('btn-3').addEventListener("click", (event) => { moveToSphere(sphere3, { x: -30, y: 0, z: -90 }, 6, event); }, false);
-document.getElementById('btn-4').addEventListener("click", (event) => { moveToSphere(sphere4, { x: 216, y: 50, z: 31 }, 6, event); }, false);
-document.getElementById('btn-5').addEventListener("click", (event) => { moveToSphere(sphere5, { x: 30, y: 50, z: 70 }, 6, event); }, false);
-
-
-function moveToSphere(targetPos, focalPos, distFrom) {
-  // Setting up for vector and postion caculation
-  const cameraLoc = new THREE.Vector3(); // Camera's position behind the target
-  const dir = new THREE.Vector3(); // The vector between the center of 3D map and target.
-  const unitsFromTarget = distFrom; // units camera is from the target
-  const focalLoc = new THREE.Vector3(focalPos.x, focalPos.y, focalPos.z); // focal point behind the target (set at center of 3D map)
-  const targetLoc = targetPos.position; // Target's position
-
-  // Caclating the position of the camera behing the targets location on the same vector as the target and center of 3D map
-  cameraLoc.addVectors(targetLoc, dir.subVectors(targetLoc, focalLoc).normalize().multiplyScalar(unitsFromTarget));
-
-  // Animate movement/position of camera
-  gsap.to(camera.position, {
-    x: cameraLoc.x,
-    duration: 4
-  });
-  gsap.to(camera.position, {
-    y: cameraLoc.y,
-    duration: 4
-  });
-  gsap.to(camera.position, {
-    z: cameraLoc.z,
-    duration: 4
-  });
-
-  // Animate aim of camera
-  gsap.to(controls.target, {
-    x: focalLoc.x,
-    duration: 4
-  });
-  gsap.to(controls.target, {
-    y: focalLoc.y,
-    duration: 4
-  });
-  gsap.to(controls.target, {
-    z: focalLoc.z,
-    duration: 4
-  });
-};
 
 // ANIMATE LOOP
 function animate() {
