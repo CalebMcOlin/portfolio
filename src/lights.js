@@ -15,7 +15,7 @@ export function createAmbientLight(color, intensity) {
  * 
  * @param {color} color Numeric value of the RGB component of the color or a Color instance.
  * @param {number} intensity Of the light
- * @param {Object} pos `Object`: [x: #, y: #, z: #] cordinates for the light.
+ * @param {Object} pos `Object`: {x: #, y: #, z: #} cordinates for the light.
  * @param {number} distance `number` Maximum range of the light. Default is 0 (no limit). 
  * @param {number} decay `number` The amount the light dims along the distance of the light. Default is 1
  * @returns The `PointLight`
@@ -33,8 +33,8 @@ export function createPointLight(color, intensity, distance, decay, pos) {
  * @param {number} width Of the light
  * @param {number} height Of the light
  * @param {float} intensity Of the light
- * @param {Object} pos `Object`: [x: #, y: #, z: #] cordinates for the light.
- * @param {Object} look `Object`: [x: #, y: #, z: #] cordinates for the light look at.
+ * @param {Object} pos `Object`: {x: #, y: #, z: #} cordinates for the light.
+ * @param {Object} look `Object`: {x: #, y: #, z: #} cordinates for the light look at.
  * @return The `RectAreaLight`
  */
 export function createRectLight(color, width, height, intensity, pos, look) {
