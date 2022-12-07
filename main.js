@@ -2,7 +2,7 @@ import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { createAmbientLight, createPointLight, createRectLight } from './src/lights';
-import { createSphere, createPlane, createBackground, createTorus } from './src/objects';
+import { createSphere, createPlane, createBackground, createTorus, createChildSphere, createPatentObject, createOctahedron } from './src/objects';
 import { movments } from './src/movement';
 
 // SCENE
@@ -39,65 +39,110 @@ function onWindowResize() {
   renderer.setPixelRatio(window.devicePixelRatio, 2);
 }
 
-// OBJECTS
+// SCENE OBJECTS
+// Foundation
+scene.background = createBackground();
 const plane = createPlane(1000, 1000, 100, 100, 0x292929, 0.5, 0.5, '/images/plane-hightmap.png', 110, -55, { x: 0, y: -5, z: 0 }, false);
 const planeGrid = createPlane(1000, 1000, 100, 100, 0x290CFF, 0, 0, '/images/plane-hightmap.png', 110, -55, { x: 0, y: -5, z: 0 }, true);
 const planeFlat = createPlane(1000, 1000, 1, 1, 0x000000, 0, 0, '', 0, 0, { x: 0, y: -59.5, z: 0 }, false);
 const planeFlatGrid = createPlane(1000, 1000, 100, 100, 0xFF019A, 0, 0, '', 0, 0, { x: -59.5, y: -59, z: 0 }, true);
-const sphere1 = createSphere("Sphere 1", 0.5, 0xFF10F0, .4, .5, './images/sphere-normal-map.jpg', { x: -20, y: -20, z: -20 });
-const sphere2 = createSphere("Sphere 2", 0.5, 0x39FF14, .4, .5, './images/sphere-normal-map.jpg', { x: -180, y: 40, z: -30 });
-const sphere3 = createSphere("Sphere 3", 0.5, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg', { x: -200, y: 10, z: 27 });
-const sphere4 = createSphere("Sphere 4", 0.5, 0x1F51FF, .4, .5, './images/sphere-normal-map.jpg', { x: 96, y: -30, z: 186 });
-const sphere5 = createSphere("Sphere 5", 0.5, 0x9D00FF, .4, .5, './images/sphere-normal-map.jpg', { x: 277, y: -38, z: -205 });
-const sphere6 = createSphere("Sphere 6", 0.5, 0xFFFF00, .4, .5, './images/sphere-normal-map.jpg', { x: -209, y: -43, z: -253 });
 const torus = createTorus("Torus", 35, 2, 20, 64, 0xfff000, 0.5, 0.5, { x: 108, y: 40, z: 38 });
-
-// LIGHTS
 const aLight1 = createAmbientLight(0xffffff, .6);
 // const rLight1 = createRectLight(0x9700CC, 1000, 1000, 1, { x: 0, y: -59.9, z: 0 }, { x: 0, y: -100, z: 0 }); // Not needed with PlaneFlat. Might replace
 const torusLight = createPointLight(0xfff000, 2.8, 85, 2.5, { x: 112, y: 51, z: 37 });
-// Lights for shapes
-const pLight1 = createPointLight(0xffffff, 3, 5, 1.5, { x: -22, y: -20, z: -20.2 });
-const pLight2 = createPointLight(0xffffff, 1.5, 2.5, 1, { x: -180, y: 41, z: -31 });
-const pLight3 = createPointLight(0xffffff, 2, 7, 1, { x: -201.5, y: 9, z: 26 });
-const pLight4 = createPointLight(0xffffff, 3, 5, 1, { x: 96.5, y: -31, z: 186.5 });
-const pLight5 = createPointLight(0xffffff, 1.5, 4, 1, { x: 278.5, y: -38.5, z: -206 });
-const pLight6 = createPointLight(0xffffff, 1, 3, 1.5, { x: -210, y: -42, z: -254 });
-
-// ADD TO SCENE
-scene.background = createBackground();
 scene.add(plane);
 scene.add(planeGrid);
 scene.add(planeFlat);
 scene.add(planeFlatGrid);
 scene.add(torus);
-
-scene.add(sphere1);
-scene.add(sphere2);
-scene.add(sphere3);
-scene.add(sphere4);
-scene.add(sphere5);
-scene.add(sphere6);
-
-scene.add(pLight1);
-scene.add(pLight2);
-scene.add(pLight3);
-scene.add(pLight4);
-scene.add(pLight5);
-scene.add(pLight6);
-
 scene.add(aLight1);
 // scene.add(rLight1); // Not needed with PlaneFlat. Might replace
 scene.add(torusLight);
 
+// Slide 1 object(s)
+const pLight1 = createPointLight(0xffffff, 3, 6, 1, { x: -23.5, y: -20, z: -20 });
+const slide1Sphere = createSphere("Sphere 1", 0.5, 0xFF10F0, .4, .5, './images/sphere-normal-map.jpg', { x: -20, y: -20, z: -20 });
+const slide1Child1 = createChildSphere("Sphere Child 1", 0.1, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg');
+const slide1Child1Parent = createPatentObject(slide1Sphere.position);
+const slide1Child2 = createChildSphere("Sphere Child 2", 0.2, 0x39FF14, .4, .5, './images/sphere-normal-map.jpg');
+const slide1Child2Parent = createPatentObject(slide1Sphere.position);
+const slide1Child3 = createChildSphere("Sphere Child 3", 0.2, 0x1F51FF, .4, .5, './images/sphere-normal-map.jpg');
+const slide1Child3Parent = createPatentObject(slide1Sphere.position);
+scene.add(pLight1);
+scene.add(slide1Sphere);
+scene.add(slide1Child1Parent);
+scene.add(slide1Child2Parent);
+scene.add(slide1Child3Parent);
+slide1Child1Parent.add(slide1Child1);
+slide1Child2Parent.add(slide1Child2);
+slide1Child3Parent.add(slide1Child3);
+slide1Child1.position.x = 1;
+slide1Child2.position.z = -1.5; // off center according to Z rather than X
+slide1Child3.position.x = -2;
+
+// Slide 2 object(s)
+const pLight2 = createPointLight(0xffffff, 1.5, 5, 1, { x: -182, y: 42, z: -32 });
+const slide2Octahedron = createOctahedron("Octahedron 1", 1, 0, 0x39FF14, .4, .5, './images/sphere-normal-map.jpg', { x: -180, y: 40, z: -30 });
+var dxPerFrame = 0.01; // how to move in a single frame
+scene.add(pLight2);
+scene.add(slide2Octahedron);
+
+// Slide 3 object(s)
+const pLight3 = createPointLight(0xffffff, 2, 8, 1.5, { x: -204, y: 10.7, z: 27 });
+const slide3Octahedron = createOctahedron("Octahedron 2", 1, 0, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg', { x: -200, y: 10, z: 27 });
+scene.add(pLight3);
+scene.add(slide3Octahedron);
+
+// Slide 4 object(s)
+const pLight4 = createPointLight(0xffffff, 3, 5, 1, { x: 96.5, y: -31, z: 186.5 });
+const sphere4 = createSphere("Sphere 4", 0.5, 0x1F51FF, .4, .5, './images/sphere-normal-map.jpg', { x: 96, y: -30, z: 186 });
+scene.add(pLight4);
+scene.add(sphere4);
+
+// Slide 5 object(s)
+const pLight5 = createPointLight(0xffffff, 1.5, 4, 1, { x: 278.5, y: -38.5, z: -206 });
+const sphere5 = createSphere("Sphere 5", 0.5, 0x9D00FF, .4, .5, './images/sphere-normal-map.jpg', { x: 277, y: -38, z: -205 });
+scene.add(pLight5);
+scene.add(sphere5);
+
+// Slide 6 object(s)
+const pLight6 = createPointLight(0xffffff, 1, 3, 1.5, { x: -210, y: -42, z: -254 });
+const sphere6 = createSphere("Sphere 6", 0.5, 0xFFFF00, .4, .5, './images/sphere-normal-map.jpg', { x: -209, y: -43, z: -253 });
+scene.add(pLight6);
+scene.add(sphere6);
+
 // MOVEMENTS
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-movments(camera, controls, sphere1, sphere2, sphere3, sphere4, sphere5, sphere6);
-
+movments(camera, controls, slide1Sphere, slide2Octahedron, slide3Octahedron, sphere4, sphere5, sphere6);
 
 // ANIMATE LOOP
 function animate() {
+  // Slide 1 Animation
+  slide1Sphere.rotateY(0.004);
+  slide1Child1.rotateY(-0.1);
+  slide1Child2.rotateY(-0.01);
+  slide1Child3.rotateZ(0.01);
+  slide1Child1Parent.rotateY(-0.01);
+  slide1Child1Parent.rotateZ(0.01);
+  slide1Child2Parent.rotateY(0.007);
+  slide1Child2Parent.rotateZ(0.007);
+  slide1Child3Parent.rotateY(-0.003);
+
+  // Slide 2 Animation
+  slide2Octahedron.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.5;
+
+  // Slide 3 Animation
+  slide3Octahedron.rotateZ(-0.01);
+  slide3Octahedron.position.y += dxPerFrame;
+  if (slide3Octahedron.position.y >= 11) dxPerFrame = -0.01; // if too far up, move down
+  if (slide3Octahedron.position.y <= 9) dxPerFrame = 0.01; // if too far down, move up
+
+  // Slide 4 Animation
+
+  // Slide 5 Animation
+
+  // Slide 6 Animation
   renderer.render(scene, camera);
   controls.update();
   requestAnimationFrame(animate);
@@ -158,16 +203,15 @@ function lightDebugHelper(light1, light2, light3) {
     console.log("y " + camera.position.y);
     console.log("z " + camera.position.z);
   };
-};
 
-// Testing location finder
-window.addEventListener("click", clicking, false);
-function clicking() {
-  console.log("x " + camera.position.x);
-  console.log("y " + camera.position.y);
-  console.log("z " + camera.position.z);
+  // Testing location finder
+  window.addEventListener("click", clicking, false);
+  function clicking() {
+    console.log("x " + camera.position.x);
+    console.log("y " + camera.position.y);
+    console.log("z " + camera.position.z);
+  };
 };
-
 // lightDebugHelper(pLight3, pLight5, pLight6); // Comment/Uncomment to toggle debug mode
 // DEBUG ** DEVELOPMENT USE ONLY ** DEBUG //
 

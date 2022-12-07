@@ -30,7 +30,8 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
   };
 
   function moveToSlide3() {
-    move(sphere3, { x: -30, y: 0, z: -90 }, 6, "slide-3");
+    // The `targetPos` need to be custom and static here here because the target is moving will mess up the camera location
+    move({position: { x: -200, y: 10, z: 27 }}, { x: -30, y: 0, z: -90 }, 6, "slide-3");
     slideIndex = 3;
     document.getElementById("btn-3").style.backgroundColor = "purple";
   };
@@ -148,7 +149,8 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
       duration: 4
     })
       .eventCallback("onComplete", function () {
-        // Temp fix to having slides overlap when changing too quickly.
+        // Temp fix to having slides overlap when changing too quickly. 
+        // TODO: Ensure slides ONLY show when camera stops moving.
         hideSlidesDisplay();
         // Show only the current slide when movement stops.
         document.getElementById(currentSlide).style.display = 'block';
