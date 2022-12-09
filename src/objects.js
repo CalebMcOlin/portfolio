@@ -81,7 +81,7 @@ export function createPatentObject(pos) {
  * @param {Object} pos `Object`: [x: #, y: #, z: #] cordinates for the octahedron.
  * @returns the created `Octahedron`
  */
- export function createOctahedron(name, rad, det, col, met, rou, normal, pos) {
+ export function createOctahedron(name, rad, det, col, met, rou, normal, pos,isWireframe) {
     const octahedron_geo = new THREE.OctahedronGeometry(rad, det);
     const octahedron_normal = textureLoader.load('' + normal);
     const octahedron_mat = new THREE.MeshStandardMaterial({
@@ -89,7 +89,8 @@ export function createPatentObject(pos) {
         color: col,
         metalness: met,
         roughness: rou,
-        normalMap: octahedron_normal
+        normalMap: octahedron_normal,
+        wireframe: isWireframe
     });
     const octahedron = new THREE.Mesh(octahedron_geo, octahedron_mat);
     // octahedron.castShadow = true;

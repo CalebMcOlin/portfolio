@@ -82,14 +82,16 @@ slide1Child3.position.x = -2;
 
 // Slide 2 object(s)
 const pLight2 = createPointLight(0xffffff, 1.5, 5, 1, { x: -182, y: 42, z: -32 });
-const slide2Octahedron = createOctahedron("Octahedron 1", 1.3, 0, 0x39FF14, .4, .5, './images/sphere-normal-map.jpg', { x: -180, y: 40, z: -30 });
+const slide2Octahedron = createOctahedron("Octahedron 1", 1.3, 0, 0x000000, 0, 0, '', { x: -180, y: 40, z: -30 }, false);
+const slide2OctahedronWire = createOctahedron("Octahedron 1 Wire", 1.3, 0, 0xFF019A, 0, 0, '', { x: -180, y: 40, z: -30 }, true);
 let dxPerFrame = 0.01; // how to move in a single frame
 scene.add(pLight2);
 scene.add(slide2Octahedron);
+scene.add(slide2OctahedronWire);
 
 // Slide 3 object(s)
 const pLight3 = createPointLight(0xffffff, 2, 8, 1.5, { x: -204, y: 10.7, z: 27 });
-const slide3Octahedron = createOctahedron("Octahedron 2", 1.5, 0, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg', { x: -200, y: 10, z: 27 });
+const slide3Octahedron = createOctahedron("Octahedron 2", 1.5, 0, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg', { x: -200, y: 10, z: 27 }, false);
 scene.add(pLight3);
 scene.add(slide3Octahedron);
 
@@ -132,6 +134,7 @@ function animate() {
 
   // Slide 2 Animation
   slide2Octahedron.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.5;
+  slide2OctahedronWire.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.5;
 
   // Slide 3 Animation
   slide3Octahedron.rotateZ(-0.01);
