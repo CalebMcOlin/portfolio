@@ -1,8 +1,23 @@
 import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { createAmbientLight, createPointLight, createRectLight } from './src/lights';
-import { createSphere, createPlane, createBackground, createTorus, createChildSphere, createPatentObject, createOctahedron, createTorusKnot, createCone, createIcosahedron } from './src/objects';
+import {
+  createAmbientLight,
+  createPointLight,
+  createRectLight
+} from './src/lights';
+import {
+  createSphere,
+  createPlane,
+  createBackground,
+  createTorus,
+  createChildSphere,
+  createPatentObject,
+  createOctahedron,
+  createTorusKnot,
+  createCone,
+  createIcosahedron
+} from './src/objects';
 import { movments } from './src/movement';
 
 // SCENE
@@ -23,7 +38,7 @@ renderer.setPixelRatio(window.devicePixelRatio, 2);
 
 // CAMERA
 export const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 1000);
-camera.position.set(-212.36, -43.18, -257.96); // Sphere1 Location
+camera.position.set(-23.46, -23.46, -23.46); // Sphere1 Location
 
 // RESIZING
 window.addEventListener('resize', onWindowResize, false);
@@ -103,10 +118,14 @@ scene.add(pLight4);
 scene.add(torusKnot);
 
 // Slide 5 object(s)
-const pLight5 = createPointLight(0xffffff, 1.5, 4, 1, { x: 278.5, y: -38.5, z: -206 });
-const sphere5 = createSphere("Sphere 5", 0.5, 0x9D00FF, .4, .5, './images/sphere-normal-map.jpg', { x: 277, y: -38, z: -205 });
+const pLight5 = createPointLight(0xffffff, 1, 10, 1, { x: 279, y: -38, z: -207.5 });
+const slide5Icosahedron = createIcosahedron("Icosahedron 1", 1, 0x9D00FF, .4, .5, './images/sphere-normal-map.jpg', { x: 277, y: -38, z: -205 }, false);
+const slide5IcosahedronLeft = createIcosahedron("Icosahedron left", .4, 0x1F51FF, .4, .5, './images/sphere-normal-map.jpg', { x: 279, y: -38, z: -203 }, false);
+const slide5IcosahedronRight = createIcosahedron("Icosahedron right", .4, 0x1F51FF, .4, .5, './images/sphere-normal-map.jpg', { x: 275, y: -38, z: -207 }, false);
 scene.add(pLight5);
-scene.add(sphere5);
+scene.add(slide5Icosahedron);
+scene.add(slide5IcosahedronRight);
+scene.add(slide5IcosahedronLeft);
 
 // Slide 6 object(s)
 const pLight6 = createPointLight(0xffffff, 1, 4, 1.5, { x: -209, y: -43, z: -253 });
@@ -115,12 +134,10 @@ const slide6Cone1 = createCone("Cone 1", .5, 1.5, 6, 1, 0xFFFF00, .4, .5, './ima
 const slide6Cone2 = createCone("Cone 2", .5, 1.5, 6, 1, 0x9D00FF, .4, .5, './images/sphere-normal-map.jpg');
 const slide6Cone3 = createCone("Cone 3", .5, 1.5, 6, 1, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg');
 const slide6Cone4 = createCone("Cone 4", .5, 1.5, 6, 1, 0x1F51FF, .4, .5, './images/sphere-normal-map.jpg');
-// adding children to parent
 slide6ConeParent.add(slide6Cone1);
 slide6ConeParent.add(slide6Cone2);
 slide6ConeParent.add(slide6Cone3);
 slide6ConeParent.add(slide6Cone4);
-// positioning Cones
 slide6Cone1.position.y = -1.5;
 slide6Cone2.position.y = 1.5;
 slide6Cone2.rotation.x = (Math.PI);
@@ -128,40 +145,39 @@ slide6Cone3.position.z = 1.5;
 slide6Cone3.rotation.x = (Math.PI / -2);
 slide6Cone4.position.z = -1.5;
 slide6Cone4.rotation.x = (Math.PI / 2);
-//adding to scene
 scene.add(pLight6);
 scene.add(slide6ConeParent);
 
 // MOVEMENTS
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-movments(camera, controls, slide1Sphere, slide2Octahedron, slide3Octahedron, torusKnot, sphere5, slide6ConeParent);
+movments(camera, controls, slide1Sphere, slide2Octahedron, slide3Octahedron, torusKnot, slide5Icosahedron, slide6ConeParent);
 
 // ANIMATE LOOP
 function animate() {
   // Slide 1 Animation
-  slide1Sphere.rotateY(0.004);
-  slide1Child1.rotateY(-0.1);
-  slide1Child2.rotateY(-0.01);
-  slide1Child3.rotateZ(0.01);
-  slide1Child1Parent.rotateY(-0.01);
-  slide1Child1Parent.rotateZ(0.01);
-  slide1Child2Parent.rotateY(0.007);
-  slide1Child2Parent.rotateZ(0.007);
-  slide1Child3Parent.rotateY(-0.003);
+  slide1Sphere.rotation.y += 0.005;
+  slide1Child1.rotation.y += -0.1;
+  slide1Child2.rotation.y += -0.01;
+  slide1Child3.rotation.z += 0.01;
+  slide1Child1Parent.rotation.z += -.01;
+  slide1Child1Parent.rotation.x += .01;
+  slide1Child2Parent.rotation.y += .008;
+  slide1Child2Parent.rotation.z += .009;
+  slide1Child3Parent.rotation.y += -.006;
 
   // Slide 2 Animation
   slide2Octahedron.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.5;
   slide2OctahedronWire.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.5;
 
   // Slide 3 Animation
-  slide3Octahedron.rotateZ(-0.01);
+  slide3Octahedron.rotation.z += -0.01;
   slide3Octahedron.position.y += dxPerFrame;
   if (slide3Octahedron.position.y >= 11) dxPerFrame = -0.01; // if too far up, move down
   if (slide3Octahedron.position.y <= 9) dxPerFrame = 0.01; // if too far down, move up
 
   // Slide 4 Animation
-  torusKnot.rotateZ(-0.01);
+  torusKnot.rotation.z += -0.01;
   torusKnot.scale.y += scalePerFrame;
   torusKnot.scale.x += scalePerFrame;
   torusKnot.scale.z += scalePerFrame;
@@ -169,6 +185,9 @@ function animate() {
   if (torusKnot.scale.y <= 0.9) scalePerFrame = 0.003; // if too small, scale up
 
   // Slide 5 Animation
+  slide5Icosahedron.rotation.z += .01
+  slide5IcosahedronLeft.rotation.y += .015
+  slide5IcosahedronRight.rotation.y += -.015
 
   // Slide 6 Animation
   slide6ConeParent.rotation.x += .005;

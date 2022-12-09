@@ -43,7 +43,7 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
   };
 
   function moveToSlide5() {
-    move(sphere5, { x: 30, y: 40, z: 0 }, 6, "slide-5");
+    move(sphere5, { x: -203, y: 0, z: 275 }, 6, "slide-5");
     slideIndex = 5;
     document.getElementById("btn-5").style.backgroundColor = "purple";
   };
@@ -173,5 +173,5 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     };
   };
 
-  moveToSlide6();
+  moveToSlide1();
 };
