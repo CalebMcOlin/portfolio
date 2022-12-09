@@ -173,5 +173,5 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     };
   };
 
-  moveToSlide4();
+  moveToSlide6();
 };

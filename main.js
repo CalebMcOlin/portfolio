@@ -2,7 +2,7 @@ import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { createAmbientLight, createPointLight, createRectLight } from './src/lights';
-import { createSphere, createPlane, createBackground, createTorus, createChildSphere, createPatentObject, createOctahedron, createTorusKnot } from './src/objects';
+import { createSphere, createPlane, createBackground, createTorus, createChildSphere, createPatentObject, createOctahedron, createTorusKnot, createCone, createIcosahedron } from './src/objects';
 import { movments } from './src/movement';
 
 // SCENE
@@ -23,7 +23,7 @@ renderer.setPixelRatio(window.devicePixelRatio, 2);
 
 // CAMERA
 export const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 1000);
-camera.position.set(92.6, -32.267, 190.4); // Sphere1 Location
+camera.position.set(-212.36, -43.18, -257.96); // Sphere1 Location
 
 // RESIZING
 window.addEventListener('resize', onWindowResize, false);
@@ -109,15 +109,33 @@ scene.add(pLight5);
 scene.add(sphere5);
 
 // Slide 6 object(s)
-const pLight6 = createPointLight(0xffffff, 1, 3, 1.5, { x: -210, y: -42, z: -254 });
-const sphere6 = createSphere("Sphere 6", 0.5, 0xFFFF00, .4, .5, './images/sphere-normal-map.jpg', { x: -209, y: -43, z: -253 });
+const pLight6 = createPointLight(0xffffff, 1, 4, 1.5, { x: -209, y: -43, z: -253 });
+const slide6ConeParent = createPatentObject({ x: -209, y: -43, z: -253 });
+const slide6Cone1 = createCone("Cone 1", .5, 1.5, 6, 1, 0xFFFF00, .4, .5, './images/sphere-normal-map.jpg');
+const slide6Cone2 = createCone("Cone 2", .5, 1.5, 6, 1, 0x9D00FF, .4, .5, './images/sphere-normal-map.jpg');
+const slide6Cone3 = createCone("Cone 3", .5, 1.5, 6, 1, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg');
+const slide6Cone4 = createCone("Cone 4", .5, 1.5, 6, 1, 0x1F51FF, .4, .5, './images/sphere-normal-map.jpg');
+// adding children to parent
+slide6ConeParent.add(slide6Cone1);
+slide6ConeParent.add(slide6Cone2);
+slide6ConeParent.add(slide6Cone3);
+slide6ConeParent.add(slide6Cone4);
+// positioning Cones
+slide6Cone1.position.y = -1.5;
+slide6Cone2.position.y = 1.5;
+slide6Cone2.rotation.x = (Math.PI);
+slide6Cone3.position.z = 1.5;
+slide6Cone3.rotation.x = (Math.PI / -2);
+slide6Cone4.position.z = -1.5;
+slide6Cone4.rotation.x = (Math.PI / 2);
+//adding to scene
 scene.add(pLight6);
-scene.add(sphere6);
+scene.add(slide6ConeParent);
 
 // MOVEMENTS
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-movments(camera, controls, slide1Sphere, slide2Octahedron, slide3Octahedron, torusKnot, sphere5, sphere6);
+movments(camera, controls, slide1Sphere, slide2Octahedron, slide3Octahedron, torusKnot, sphere5, slide6ConeParent);
 
 // ANIMATE LOOP
 function animate() {
@@ -153,6 +171,9 @@ function animate() {
   // Slide 5 Animation
 
   // Slide 6 Animation
+  slide6ConeParent.rotation.x += .005;
+  slide6ConeParent.rotation.y += .005;
+  slide6ConeParent.rotation.z += .005;
 
   // Main animation loop
   renderer.render(scene, camera);
