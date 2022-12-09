@@ -153,7 +153,7 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
         // TODO: Ensure slides ONLY show when camera stops moving.
         hideSlidesDisplay();
         // Show only the current slide when movement stops.
-        document.getElementById(currentSlide).style.display = 'block';
+        // document.getElementById(currentSlide).style.display = 'block'; // TEMP
       });
   };
 
@@ -173,5 +173,5 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     };
   };
 
-  moveToSlide1();
+  moveToSlide4();
 };

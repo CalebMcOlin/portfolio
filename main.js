@@ -2,7 +2,7 @@ import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { createAmbientLight, createPointLight, createRectLight } from './src/lights';
-import { createSphere, createPlane, createBackground, createTorus, createChildSphere, createPatentObject, createOctahedron } from './src/objects';
+import { createSphere, createPlane, createBackground, createTorus, createChildSphere, createPatentObject, createOctahedron, createTorusKnot } from './src/objects';
 import { movments } from './src/movement';
 
 // SCENE
@@ -23,7 +23,7 @@ renderer.setPixelRatio(window.devicePixelRatio, 2);
 
 // CAMERA
 export const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 1000);
-camera.position.set(-23.5, -23.5, -23.5); // Sphere1 Location
+camera.position.set(92.6, -32.267, 190.4); // Sphere1 Location
 
 // RESIZING
 window.addEventListener('resize', onWindowResize, false);
@@ -82,22 +82,23 @@ slide1Child3.position.x = -2;
 
 // Slide 2 object(s)
 const pLight2 = createPointLight(0xffffff, 1.5, 5, 1, { x: -182, y: 42, z: -32 });
-const slide2Octahedron = createOctahedron("Octahedron 1", 1, 0, 0x39FF14, .4, .5, './images/sphere-normal-map.jpg', { x: -180, y: 40, z: -30 });
-var dxPerFrame = 0.01; // how to move in a single frame
+const slide2Octahedron = createOctahedron("Octahedron 1", 1.3, 0, 0x39FF14, .4, .5, './images/sphere-normal-map.jpg', { x: -180, y: 40, z: -30 });
+let dxPerFrame = 0.01; // how to move in a single frame
 scene.add(pLight2);
 scene.add(slide2Octahedron);
 
 // Slide 3 object(s)
 const pLight3 = createPointLight(0xffffff, 2, 8, 1.5, { x: -204, y: 10.7, z: 27 });
-const slide3Octahedron = createOctahedron("Octahedron 2", 1, 0, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg', { x: -200, y: 10, z: 27 });
+const slide3Octahedron = createOctahedron("Octahedron 2", 1.5, 0, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg', { x: -200, y: 10, z: 27 });
 scene.add(pLight3);
 scene.add(slide3Octahedron);
 
 // Slide 4 object(s)
-const pLight4 = createPointLight(0xffffff, 3, 5, 1, { x: 96.5, y: -31, z: 186.5 });
-const sphere4 = createSphere("Sphere 4", 0.5, 0x1F51FF, .4, .5, './images/sphere-normal-map.jpg', { x: 96, y: -30, z: 186 });
+const pLight4 = createPointLight(0xffffff, 2, 4.5, 1, { x: 93, y: -30, z: 187 });
+const torusKnot = createTorusKnot("TorusKnot", 1, .2, 60, 12, 5, 4, 0x1F51FF, .4, .5, './images/sphere-normal-map.jpg', { x: 96, y: -30, z: 186 });
+let scalePerFrame = 0.003; // scale the capsule up and down
 scene.add(pLight4);
-scene.add(sphere4);
+scene.add(torusKnot);
 
 // Slide 5 object(s)
 const pLight5 = createPointLight(0xffffff, 1.5, 4, 1, { x: 278.5, y: -38.5, z: -206 });
@@ -114,7 +115,7 @@ scene.add(sphere6);
 // MOVEMENTS
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-movments(camera, controls, slide1Sphere, slide2Octahedron, slide3Octahedron, sphere4, sphere5, sphere6);
+movments(camera, controls, slide1Sphere, slide2Octahedron, slide3Octahedron, torusKnot, sphere5, sphere6);
 
 // ANIMATE LOOP
 function animate() {
@@ -139,10 +140,18 @@ function animate() {
   if (slide3Octahedron.position.y <= 9) dxPerFrame = 0.01; // if too far down, move up
 
   // Slide 4 Animation
+  torusKnot.rotateZ(-0.01);
+  torusKnot.scale.y += scalePerFrame;
+  torusKnot.scale.x += scalePerFrame;
+  torusKnot.scale.z += scalePerFrame;
+  if (torusKnot.scale.y >= 1.3) scalePerFrame = -0.003; // if too big, scale down
+  if (torusKnot.scale.y <= 0.9) scalePerFrame = 0.003; // if too small, scale up
 
   // Slide 5 Animation
 
   // Slide 6 Animation
+
+  // Main animation loop
   renderer.render(scene, camera);
   controls.update();
   requestAnimationFrame(animate);
@@ -162,14 +171,14 @@ function lightDebugHelper(light1, light2, light3) {
   scene.add(lightHelper3);
 
   // GUI interface
-  const lightFolder1 = gui.addFolder('Light 3');
+  const lightFolder1 = gui.addFolder('Light 4');
   const light1Color = { color: 0xffffff };
   lightFolder1.add(light1, 'intensity').min(0).max(10).step(0.01);
-  lightFolder1.add(light1, 'distance').min(0).max(1000).step(0.5);
+  lightFolder1.add(light1, 'distance').min(0).max(7).step(0.5);
   lightFolder1.add(light1, 'decay').min(1).max(10).step(0.5);
-  lightFolder1.add(light1.position, 'x').min(-1000).max(1000).step(0.1);
-  lightFolder1.add(light1.position, 'y').min(-1000).max(1000).step(0.1);
-  lightFolder1.add(light1.position, 'z').min(-1000).max(1000).step(0.1);
+  lightFolder1.add(light1.position, 'x').min(90).max(110).step(0.1);
+  lightFolder1.add(light1.position, 'y').min(-34).max(-27).step(0.1);
+  lightFolder1.add(light1.position, 'z').min(180).max(193).step(0.1);
   lightFolder1.addColor(light1Color, 'color').onChange(() => {
     light1.color.set(light1Color.color)
   });
@@ -212,7 +221,7 @@ function lightDebugHelper(light1, light2, light3) {
     console.log("z " + camera.position.z);
   };
 };
-// lightDebugHelper(pLight3, pLight5, pLight6); // Comment/Uncomment to toggle debug mode
+lightDebugHelper(pLight4, pLight5, pLight6); // Comment/Uncomment to toggle debug mode
 // DEBUG ** DEVELOPMENT USE ONLY ** DEBUG //
 
 animate();

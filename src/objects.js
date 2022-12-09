@@ -57,8 +57,7 @@ export function createChildSphere(name, rad, col, met, rou, normal) {
     return sphere;
 };
 
-/**
- *  Creates a parent Object3D at the given location.
+/** Creates a parent Object3D at the given location.
  * 
  * @param {Object} pos `Object`: [x: #, y: #, z: #] cordinates for the parent object's position.
 
@@ -74,7 +73,7 @@ export function createPatentObject(pos) {
  * 
  * @param {String} name `String`: The name of the octahedron
  * @param {float} rad `float`: The radius of the octahedron.
- * @param {integer} det `integer`: The level of detail of the octahedron.
+ * @param {number} det `integer`: The level of detail of the octahedron.
  * @param {color} col `color`: 0x000000
  * @param {float} met `float`: The metalness of the octahedron. - '0 > 1'
  * @param {float} rou `float`: The roughness of the octahedron. - '0 > 1'
@@ -114,20 +113,49 @@ export function createPatentObject(pos) {
  */
 export function createTorus(name, rad, thick, radSeg, thickSeg, col, met, rou, pos) {
     const torus_geo = new THREE.TorusGeometry(rad, thick, radSeg, thickSeg);
-    // const sphere_normal = textureLoader.load('' + normal);
     const torus_mat = new THREE.MeshBasicMaterial({
         name: name,
         color: col,
-        // metalness: met,
-        // roughness: rou,
-        // normalMap: sphere_normal
     });
     const torus = new THREE.Mesh(torus_geo, torus_mat);
     // torus.castShadow = true;
     // torus.receiveShadow = true;
     torus.position.set(pos.x, pos.y, pos.z);
-    torus.rotation.x = (Math.PI / -2);
+    torus.rotation.x = (Math.PI / -2); // Allows the torus to lay down horizontally 
     return torus;
+};
+
+/** Creates a TorusKnot Object3D with the given properties.
+ * 
+ * @param {String} name `String`: The name of the TrousKnot
+ * @param {float} rad `float`: The radius of the TrousKnot.
+ * @param {number} thick thickness of the TrousKnot
+ * @param {float} radSeg number of radius segments 
+ * @param {float} thickSeg number of thickness segments
+ * @param {number} p determines how many times the geometry winds around its axis of rotational symmetry. (Default is 2)
+ * @param {number} q determines how many times the geometry winds around a circle in the interior of the torus. (Default is 3)
+ * @param {color} col `color`: 0x000000
+ * @param {float} met `float`: The metalness of the Torus. - '0 > 1'
+ * @param {float} rou `float`: The roughness of the Torus. - '0 > 1'
+ * @param {Object} pos `Object`: [x: #, y: #, z: #] cordinates for the TrousKnot.
+ * @returns the created `TrousKnot`
+ */
+export function createTorusKnot(name, rad, thick, thickSeg, radSeg, p, q, col, met, rou, normal, pos){
+    const torusKnot_geo = new THREE.TorusKnotGeometry(rad, thick, thickSeg, radSeg, p, q);
+    const torusKnot_normal = textureLoader.load('' + normal);
+    const torusKnot_mat = new THREE.MeshStandardMaterial({
+        name: name,
+        color: col,
+        metalness: met,
+        roughness: rou,
+        normalMap: torusKnot_normal
+    });
+    const torusKnot = new THREE.Mesh(torusKnot_geo, torusKnot_mat);
+    // torus.castShadow = true;
+    // torus.receiveShadow = true;
+    torusKnot.position.set(pos.x, pos.y, pos.z);
+    torusKnot.rotation.y = -1;
+    return torusKnot;
 };
 
 /** Creates a Plane Object3D with the given properties.
