@@ -310,7 +310,7 @@ function lightDebugHelper(light1, light2, light3) {
     console.log("z " + camera.position.z);
   };
 };
-lightDebugHelper(pLight4, pLight5, pLight6); // Comment/Uncomment to toggle debug mode
+// lightDebugHelper(pLight4, pLight5, pLight6); // Comment/Uncomment to toggle debug mode
 // DEBUG ** DEVELOPMENT USE ONLY ** DEBUG //
 
 animate();
