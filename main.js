@@ -19,6 +19,7 @@ import {
   createIcosahedron
 } from './src/objects';
 import { movments } from './src/movement';
+import * as TWEEN from '@tweenjs/tween.js';
 
 // SCENE
 export const scene = new THREE.Scene();
@@ -99,16 +100,63 @@ slide1Child3.position.x = -2;
 const pLight2 = createPointLight(0xffffff, 1.5, 5, 1, { x: -182, y: 42, z: -32 });
 const slide2Octahedron = createOctahedron("Octahedron 1", 1.3, 0, 0x000000, 0, 0, '', { x: -180, y: 40, z: -30 }, false);
 const slide2OctahedronWire = createOctahedron("Octahedron 1 Wire", 1.3, 0, 0xFF019A, 0, 0, '', { x: -180, y: 40, z: -30 }, true);
-let dxPerFrame = 0.01; // how to move in a single frame
 scene.add(pLight2);
 scene.add(slide2Octahedron);
 scene.add(slide2OctahedronWire);
 
 // Slide 3 object(s)
-const pLight3 = createPointLight(0xffffff, 2, 8, 1.5, { x: -204, y: 10.7, z: 27 });
-const slide3Octahedron = createOctahedron("Octahedron 2", 1.5, 0, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg', { x: -200, y: 10, z: 27 }, false);
+const pLight3 = createPointLight(0xffffff, 2, 8, 1.5, { x: -201, y: 11.4, z: 26.8 });
+const slide3Cone1 = createCone("Cone 3-1", 1, 1.4, 4, 1, 0x00000, .4, .5, './images/sphere-normal-map.jpg', false);
+const slide3Cone1Wire = createCone("Cone 3-1 Wire", 1, 1.4, 4, 1, 0xFF019A, 0, 0, './images/sphere-normal-map.jpg', true);
+const slide3Cone2 = createCone("Cone 3-2", 1, 1.4, 4, 1, 0x00000, .4, .5, './images/sphere-normal-map.jpg', false);
+const slide3Cone2Wire = createCone("Cone 3-2 Wire", 1, 1.4, 4, 1, 0xFF019A, 0, 0, './images/sphere-normal-map.jpg', true);
+slide3Cone1.position.set(-200, 10.8, 27);
+slide3Cone2.position.set(-200, 9.2, 27);
+slide3Cone2.rotation.x = (Math.PI);
+slide3Cone1.add(slide3Cone1Wire);
+slide3Cone2.add(slide3Cone2Wire);
+scene.add(slide3Cone1);
+scene.add(slide3Cone2);
 scene.add(pLight3);
-scene.add(slide3Octahedron);
+
+// Slide 3 animation using Tween
+const slide3Cone1Tween1 = new TWEEN.Tween({ y: 10.8, yRotation: 0 })
+  .to({ y: 11.6, yRotation: Math.PI }, 2000)
+  .onUpdate((cords) => {
+    slide3Cone1.position.y = cords.y;
+    slide3Cone1.rotation.y = cords.yRotation;
+  })
+  .easing(TWEEN.Easing.Quadratic.InOut)
+  .delay(500);
+const slide3Cone1Tween2 = new TWEEN.Tween({ y: 11.6, yRotation: Math.PI })
+  .to({ y: 10.8, yRotation: Math.PI * 2 }, 2000)
+  .onUpdate((cords) => {
+    slide3Cone1.position.y = cords.y;
+    slide3Cone1.rotation.y = cords.yRotation;
+  })
+  .easing(TWEEN.Easing.Quadratic.InOut);
+slide3Cone1Tween1.chain(slide3Cone1Tween2);
+slide3Cone1Tween2.chain(slide3Cone1Tween1);
+slide3Cone1Tween1.start();
+// Slide 3 animation using Tween
+const slide3Cone2Tween1 = new TWEEN.Tween({ y: 9.2, yRotation: 0 })
+  .to({ y: 8.6, yRotation: Math.PI }, 2000)
+  .onUpdate((cords) => {
+    slide3Cone2.position.y = cords.y;
+    slide3Cone2.rotation.y = cords.yRotation;
+  })
+  .easing(TWEEN.Easing.Quadratic.InOut)
+  .delay(500);
+const slide3Cone2Tween2 = new TWEEN.Tween({ y: 8.6, yRotation: Math.PI })
+  .to({ y: 9.2, yRotation: Math.PI * 2 }, 2000)
+  .onUpdate((cords) => {
+    slide3Cone2.position.y = cords.y;
+    slide3Cone2.rotation.y = cords.yRotation;
+  })
+  .easing(TWEEN.Easing.Quadratic.InOut);
+slide3Cone2Tween1.chain(slide3Cone2Tween2);
+slide3Cone2Tween2.chain(slide3Cone2Tween1);
+slide3Cone2Tween1.start();
 
 // Slide 4 object(s)
 const pLight4 = createPointLight(0xffffff, 2, 4.5, 1, { x: 93, y: -30, z: 187 });
@@ -130,10 +178,10 @@ scene.add(slide5IcosahedronLeft);
 // Slide 6 object(s)
 const pLight6 = createPointLight(0xffffff, 1, 4, 1.5, { x: -209, y: -43, z: -253 });
 const slide6ConeParent = createPatentObject({ x: -209, y: -43, z: -253 });
-const slide6Cone1 = createCone("Cone 1", .5, 1.5, 6, 1, 0xFFFF00, .4, .5, './images/sphere-normal-map.jpg');
-const slide6Cone2 = createCone("Cone 2", .5, 1.5, 6, 1, 0x9D00FF, .4, .5, './images/sphere-normal-map.jpg');
-const slide6Cone3 = createCone("Cone 3", .5, 1.5, 6, 1, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg');
-const slide6Cone4 = createCone("Cone 4", .5, 1.5, 6, 1, 0x1F51FF, .4, .5, './images/sphere-normal-map.jpg');
+const slide6Cone1 = createCone("Cone 1", .5, 1.5, 6, 1, 0xFFFF00, .4, .5, './images/sphere-normal-map.jpg', false);
+const slide6Cone2 = createCone("Cone 2", .5, 1.5, 6, 1, 0x9D00FF, .4, .5, './images/sphere-normal-map.jpg', false);
+const slide6Cone3 = createCone("Cone 3", .5, 1.5, 6, 1, 0xFF3131, .4, .5, './images/sphere-normal-map.jpg', false);
+const slide6Cone4 = createCone("Cone 4", .5, 1.5, 6, 1, 0x1F51FF, .4, .5, './images/sphere-normal-map.jpg', false);
 slide6ConeParent.add(slide6Cone1);
 slide6ConeParent.add(slide6Cone2);
 slide6ConeParent.add(slide6Cone3);
@@ -151,10 +199,10 @@ scene.add(slide6ConeParent);
 // MOVEMENTS
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-movments(camera, controls, slide1Sphere, slide2Octahedron, slide3Octahedron, torusKnot, slide5Icosahedron, slide6ConeParent);
+movments(camera, controls, slide1Sphere, slide2Octahedron, slide3Cone1, torusKnot, slide5Icosahedron, slide6ConeParent);
 
 // ANIMATE LOOP
-function animate() {
+function animate(t) {
   // Slide 1 Animation
   slide1Sphere.rotation.y += 0.005;
   slide1Child1.rotation.y += -0.1;
@@ -171,10 +219,7 @@ function animate() {
   slide2OctahedronWire.rotation.y = Math.sin(Date.now() * 0.001) * Math.PI * 0.5;
 
   // Slide 3 Animation
-  slide3Octahedron.rotation.z += -0.01;
-  slide3Octahedron.position.y += dxPerFrame;
-  if (slide3Octahedron.position.y >= 11) dxPerFrame = -0.01; // if too far up, move down
-  if (slide3Octahedron.position.y <= 9) dxPerFrame = 0.01; // if too far down, move up
+  // Slide 3 uses TWEEN for the animation. Check the Slide 3 object(s) above for animation code.
 
   // Slide 4 Animation
   torusKnot.rotation.z += -0.01;
@@ -195,6 +240,7 @@ function animate() {
   slide6ConeParent.rotation.z += .005;
 
   // Main animation loop
+  TWEEN.update(t);
   renderer.render(scene, camera);
   controls.update();
   requestAnimationFrame(animate);
@@ -219,9 +265,9 @@ function lightDebugHelper(light1, light2, light3) {
   lightFolder1.add(light1, 'intensity').min(0).max(10).step(0.01);
   lightFolder1.add(light1, 'distance').min(0).max(7).step(0.5);
   lightFolder1.add(light1, 'decay').min(1).max(10).step(0.5);
-  lightFolder1.add(light1.position, 'x').min(90).max(110).step(0.1);
-  lightFolder1.add(light1.position, 'y').min(-34).max(-27).step(0.1);
-  lightFolder1.add(light1.position, 'z').min(180).max(193).step(0.1);
+  lightFolder1.add(light1.position, 'x').min(-1000).max(1000).step(0.1);
+  lightFolder1.add(light1.position, 'y').min(-1000).max(1000).step(0.1);
+  lightFolder1.add(light1.position, 'z').min(-1000).max(1000).step(0.1);
   lightFolder1.addColor(light1Color, 'color').onChange(() => {
     light1.color.set(light1Color.color)
   });

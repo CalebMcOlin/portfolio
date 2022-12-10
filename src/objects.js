@@ -126,7 +126,7 @@ export function createIcosahedron(name, rad, col, met, rou, normal, pos, isWiref
     // icosahedron.receiveShadow = true;
     icosahedron.position.set(pos.x, pos.y, pos.z);
     return icosahedron;
-}
+};
 
 /** Creates a Torus Object3D with the given properties.
  * 
@@ -196,7 +196,7 @@ export function createTorusKnot(name, rad, thick, thickSeg, radSeg, p, q, col, m
  * @param {number} radSeg `number`: number of segmented faces around the circumference of the cone. (Default is 8)
  * @param {number} heightSeg `number`: number of rows of faces along the height of the cone. (Default is 10)
  */
-export function createCone(name, rad, height, radSeg, heightSeg, col, met, rou, normal) {
+export function createCone(name, rad, height, radSeg, heightSeg, col, met, rou, normal, isWireframe) {
     const cone_geo = new THREE.ConeGeometry(rad, height, radSeg, heightSeg);
     const cone_normal = textureLoader.load('' + normal);
     const cone_mat = new THREE.MeshStandardMaterial({
@@ -204,7 +204,8 @@ export function createCone(name, rad, height, radSeg, heightSeg, col, met, rou, 
         color: col,
         metalness: met,
         roughness: rou,
-        normalMap: cone_normal
+        normalMap: cone_normal,
+        wireframe: isWireframe
     });
     const cone = new THREE.Mesh(cone_geo, cone_mat);
     // cone.castShadow = true;
