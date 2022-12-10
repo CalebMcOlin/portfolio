@@ -18,7 +18,7 @@ import {
   createCone,
   createIcosahedron
 } from './src/objects';
-import { movments } from './src/movement';
+import { movement } from './src/movement';
 import * as TWEEN from '@tweenjs/tween.js';
 
 // SCENE
@@ -199,7 +199,7 @@ scene.add(slide6ConeParent);
 // MOVEMENTS
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-movments(camera, controls, slide1Sphere, slide2Octahedron, slide3Cone1, torusKnot, slide5Icosahedron, slide6ConeParent);
+movement(camera, controls, slide1Sphere, slide2Octahedron, slide3Cone1, torusKnot, slide5Icosahedron, slide6ConeParent);
 
 // ANIMATE LOOP
 function animate(t) {

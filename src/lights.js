@@ -7,8 +7,8 @@ import * as THREE from 'three';
  * @returns The `AmbientLight`
  */
 export function createAmbientLight(color, intensity) {
-    const ambientLight = new THREE.AmbientLight(color, intensity);
-    return ambientLight;
+  const ambientLight = new THREE.AmbientLight(color, intensity);
+  return ambientLight;
 };
 
 /** Creates a single `Pointlight` with the given properties.
@@ -21,10 +21,10 @@ export function createAmbientLight(color, intensity) {
  * @returns The `PointLight`
  */
 export function createPointLight(color, intensity, distance, decay, pos) {
-    const pointLight = new THREE.PointLight(color, intensity, distance, decay);
-    // pointLight.castShadow = true;
-    pointLight.position.set(pos.x, pos.y, pos.z);
-    return pointLight;
+  const pointLight = new THREE.PointLight(color, intensity, distance, decay);
+  // pointLight.castShadow = true;
+  pointLight.position.set(pos.x, pos.y, pos.z);
+  return pointLight;
 };
 
 /** Creates a single `RectAreaLight` with the given properties.
@@ -38,8 +38,8 @@ export function createPointLight(color, intensity, distance, decay, pos) {
  * @return The `RectAreaLight`
  */
 export function createRectLight(color, width, height, intensity, pos, look) {
-    const rectLight = new THREE.RectAreaLight(color, intensity, width, height);
-    rectLight.position.set(pos.x, pos.y, pos.z);
-    rectLight.lookAt(look.x, look.y, look.z);
-    return rectLight;
+  const rectLight = new THREE.RectAreaLight(color, intensity, width, height);
+  rectLight.position.set(pos.x, pos.y, pos.z);
+  rectLight.lookAt(look.x, look.y, look.z);
+  return rectLight;
 }

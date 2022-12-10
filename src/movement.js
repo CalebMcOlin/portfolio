@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import { gsap } from "gsap";
 
-export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, sphere5, sphere6) {
+export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, sphere5, sphere6) {
 
   let slideIndex = 1;
 
@@ -31,7 +31,7 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
 
   function moveToSlide3() {
     // The `targetPos` need to be custom and static here here because the target is moving will mess up the camera location
-    move({position: { x: -200, y: 10, z: 27 }}, { x: -30, y: 0, z: -90 }, 6, "slide-3");
+    move({ position: { x: -200, y: 10, z: 27 } }, { x: -30, y: 0, z: -90 }, 6, "slide-3");
     slideIndex = 3;
     document.getElementById("btn-3").style.backgroundColor = "purple";
   };
@@ -124,13 +124,7 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     // Animate movement/position of camera
     gsap.to(camera.position, {
       x: cameraLoc.x,
-      duration: 4
-    });
-    gsap.to(camera.position, {
       y: cameraLoc.y,
-      duration: 4
-    });
-    gsap.to(camera.position, {
       z: cameraLoc.z,
       duration: 4
     });
@@ -138,13 +132,7 @@ export function movments(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     // Animate aim of camera
     gsap.to(controls.target, {
       x: focalLoc.x,
-      duration: 4
-    })
-    gsap.to(controls.target, {
       y: focalLoc.y,
-      duration: 4
-    });
-    gsap.to(controls.target, {
       z: focalLoc.z,
       duration: 4
     })

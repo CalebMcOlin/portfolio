@@ -14,20 +14,20 @@ const textureLoader = new THREE.TextureLoader();
  * @returns the created `Sphere`
  */
 export function createSphere(name, rad, col, met, rou, normal, pos) {
-    const sphere_geo = new THREE.SphereGeometry(rad, 64, 64);
-    const sphere_normal = textureLoader.load('' + normal);
-    const sphere_mat = new THREE.MeshStandardMaterial({
-        name: name,
-        color: col,
-        metalness: met,
-        roughness: rou,
-        normalMap: sphere_normal
-    });
-    const sphere = new THREE.Mesh(sphere_geo, sphere_mat);
-    // sphere.castShadow = true;
-    // sphere.receiveShadow = true;
-    sphere.position.set(pos.x, pos.y, pos.z);
-    return sphere;
+  const sphere_geo = new THREE.SphereGeometry(rad, 64, 64);
+  const sphere_normal = textureLoader.load('' + normal);
+  const sphere_mat = new THREE.MeshStandardMaterial({
+    name: name,
+    color: col,
+    metalness: met,
+    roughness: rou,
+    normalMap: sphere_normal
+  });
+  const sphere = new THREE.Mesh(sphere_geo, sphere_mat);
+  // sphere.castShadow = true;
+  // sphere.receiveShadow = true;
+  sphere.position.set(pos.x, pos.y, pos.z);
+  return sphere;
 };
 
 /** Creates a Child Sphere Object3D with the given properties. 
@@ -42,19 +42,19 @@ export function createSphere(name, rad, col, met, rou, normal, pos) {
  * @returns the created `Sphere`
  */
 export function createChildSphere(name, rad, col, met, rou, normal) {
-    const sphere_geo = new THREE.SphereGeometry(rad, 64, 64);
-    const sphere_normal = textureLoader.load('' + normal);
-    const sphere_mat = new THREE.MeshStandardMaterial({
-        name: name,
-        color: col,
-        metalness: met,
-        roughness: rou,
-        normalMap: sphere_normal
-    });
-    const sphere = new THREE.Mesh(sphere_geo, sphere_mat);
-    // sphere.castShadow = true;
-    // sphere.receiveShadow = true;
-    return sphere;
+  const sphere_geo = new THREE.SphereGeometry(rad, 64, 64);
+  const sphere_normal = textureLoader.load('' + normal);
+  const sphere_mat = new THREE.MeshStandardMaterial({
+    name: name,
+    color: col,
+    metalness: met,
+    roughness: rou,
+    normalMap: sphere_normal
+  });
+  const sphere = new THREE.Mesh(sphere_geo, sphere_mat);
+  // sphere.castShadow = true;
+  // sphere.receiveShadow = true;
+  return sphere;
 };
 
 /** Creates a parent Object3D at the given location.
@@ -64,9 +64,9 @@ export function createChildSphere(name, rad, col, met, rou, normal) {
  * @returns The invisible object used to connect a child to. 
  */
 export function createPatentObject(pos) {
-    const parent = new THREE.Object3D();
-    parent.position.set(pos.x, pos.y, pos.z);
-    return parent;
+  const parent = new THREE.Object3D();
+  parent.position.set(pos.x, pos.y, pos.z);
+  return parent;
 };
 
 /** Creates a Octahedron Object3D with the given properties.
@@ -82,21 +82,21 @@ export function createPatentObject(pos) {
  * @returns the created `Octahedron`
  */
 export function createOctahedron(name, rad, det, col, met, rou, normal, pos, isWireframe) {
-    const octahedron_geo = new THREE.OctahedronGeometry(rad, det);
-    const octahedron_normal = textureLoader.load('' + normal);
-    const octahedron_mat = new THREE.MeshStandardMaterial({
-        name: name,
-        color: col,
-        metalness: met,
-        roughness: rou,
-        normalMap: octahedron_normal,
-        wireframe: isWireframe
-    });
-    const octahedron = new THREE.Mesh(octahedron_geo, octahedron_mat);
-    // octahedron.castShadow = true;
-    // octahedron.receiveShadow = true;
-    octahedron.position.set(pos.x, pos.y, pos.z);
-    return octahedron;
+  const octahedron_geo = new THREE.OctahedronGeometry(rad, det);
+  const octahedron_normal = textureLoader.load('' + normal);
+  const octahedron_mat = new THREE.MeshStandardMaterial({
+    name: name,
+    color: col,
+    metalness: met,
+    roughness: rou,
+    normalMap: octahedron_normal,
+    wireframe: isWireframe
+  });
+  const octahedron = new THREE.Mesh(octahedron_geo, octahedron_mat);
+  // octahedron.castShadow = true;
+  // octahedron.receiveShadow = true;
+  octahedron.position.set(pos.x, pos.y, pos.z);
+  return octahedron;
 };
 
 /** Creates a Icosahedron Object3D with the given properties.
@@ -111,21 +111,21 @@ export function createOctahedron(name, rad, det, col, met, rou, normal, pos, isW
  * @returns the created `icosahedron`
  */
 export function createIcosahedron(name, rad, col, met, rou, normal, pos, isWireframe) {
-    const icosahedron_geo = new THREE.IcosahedronGeometry(rad, 0);
-    const icosahedron_normal = textureLoader.load('' + normal);
-    const icosahedron_mat = new THREE.MeshStandardMaterial({
-        name: name,
-        color: col,
-        metalness: met,
-        roughness: rou,
-        normalMap: icosahedron_normal,
-        wireframe: isWireframe
-    });
-    const icosahedron = new THREE.Mesh(icosahedron_geo, icosahedron_mat);
-    // icosahedron.castShadow = true;
-    // icosahedron.receiveShadow = true;
-    icosahedron.position.set(pos.x, pos.y, pos.z);
-    return icosahedron;
+  const icosahedron_geo = new THREE.IcosahedronGeometry(rad, 0);
+  const icosahedron_normal = textureLoader.load('' + normal);
+  const icosahedron_mat = new THREE.MeshStandardMaterial({
+    name: name,
+    color: col,
+    metalness: met,
+    roughness: rou,
+    normalMap: icosahedron_normal,
+    wireframe: isWireframe
+  });
+  const icosahedron = new THREE.Mesh(icosahedron_geo, icosahedron_mat);
+  // icosahedron.castShadow = true;
+  // icosahedron.receiveShadow = true;
+  icosahedron.position.set(pos.x, pos.y, pos.z);
+  return icosahedron;
 };
 
 /** Creates a Torus Object3D with the given properties.
@@ -142,17 +142,17 @@ export function createIcosahedron(name, rad, col, met, rou, normal, pos, isWiref
  * @returns the created `Trous`
  */
 export function createTorus(name, rad, thick, radSeg, thickSeg, col, met, rou, pos) {
-    const torus_geo = new THREE.TorusGeometry(rad, thick, radSeg, thickSeg);
-    const torus_mat = new THREE.MeshBasicMaterial({
-        name: name,
-        color: col,
-    });
-    const torus = new THREE.Mesh(torus_geo, torus_mat);
-    // torus.castShadow = true;
-    // torus.receiveShadow = true;
-    torus.position.set(pos.x, pos.y, pos.z);
-    torus.rotation.x = (Math.PI / -2); // Allows the torus to lay down horizontally 
-    return torus;
+  const torus_geo = new THREE.TorusGeometry(rad, thick, radSeg, thickSeg);
+  const torus_mat = new THREE.MeshBasicMaterial({
+    name: name,
+    color: col,
+  });
+  const torus = new THREE.Mesh(torus_geo, torus_mat);
+  // torus.castShadow = true;
+  // torus.receiveShadow = true;
+  torus.position.set(pos.x, pos.y, pos.z);
+  torus.rotation.x = (Math.PI / -2); // Allows the torus to lay down horizontally 
+  return torus;
 };
 
 /** Creates a TorusKnot Object3D with the given properties.
@@ -171,21 +171,21 @@ export function createTorus(name, rad, thick, radSeg, thickSeg, col, met, rou, p
  * @returns the created `TrousKnot`
  */
 export function createTorusKnot(name, rad, thick, thickSeg, radSeg, p, q, col, met, rou, normal, pos) {
-    const torusKnot_geo = new THREE.TorusKnotGeometry(rad, thick, thickSeg, radSeg, p, q);
-    const torusKnot_normal = textureLoader.load('' + normal);
-    const torusKnot_mat = new THREE.MeshStandardMaterial({
-        name: name,
-        color: col,
-        metalness: met,
-        roughness: rou,
-        normalMap: torusKnot_normal
-    });
-    const torusKnot = new THREE.Mesh(torusKnot_geo, torusKnot_mat);
-    // torus.castShadow = true;
-    // torus.receiveShadow = true;
-    torusKnot.position.set(pos.x, pos.y, pos.z);
-    torusKnot.rotation.y = -1;
-    return torusKnot;
+  const torusKnot_geo = new THREE.TorusKnotGeometry(rad, thick, thickSeg, radSeg, p, q);
+  const torusKnot_normal = textureLoader.load('' + normal);
+  const torusKnot_mat = new THREE.MeshStandardMaterial({
+    name: name,
+    color: col,
+    metalness: met,
+    roughness: rou,
+    normalMap: torusKnot_normal
+  });
+  const torusKnot = new THREE.Mesh(torusKnot_geo, torusKnot_mat);
+  // torus.castShadow = true;
+  // torus.receiveShadow = true;
+  torusKnot.position.set(pos.x, pos.y, pos.z);
+  torusKnot.rotation.y = -1;
+  return torusKnot;
 };
 
 /** Creates a cone Object3D with the given properties.
@@ -197,20 +197,20 @@ export function createTorusKnot(name, rad, thick, thickSeg, radSeg, p, q, col, m
  * @param {number} heightSeg `number`: number of rows of faces along the height of the cone. (Default is 10)
  */
 export function createCone(name, rad, height, radSeg, heightSeg, col, met, rou, normal, isWireframe) {
-    const cone_geo = new THREE.ConeGeometry(rad, height, radSeg, heightSeg);
-    const cone_normal = textureLoader.load('' + normal);
-    const cone_mat = new THREE.MeshStandardMaterial({
-        name: name,
-        color: col,
-        metalness: met,
-        roughness: rou,
-        normalMap: cone_normal,
-        wireframe: isWireframe
-    });
-    const cone = new THREE.Mesh(cone_geo, cone_mat);
-    // cone.castShadow = true;
-    // cone.receiveShadow = true;
-    return cone;
+  const cone_geo = new THREE.ConeGeometry(rad, height, radSeg, heightSeg);
+  const cone_normal = textureLoader.load('' + normal);
+  const cone_mat = new THREE.MeshStandardMaterial({
+    name: name,
+    color: col,
+    metalness: met,
+    roughness: rou,
+    normalMap: cone_normal,
+    wireframe: isWireframe
+  });
+  const cone = new THREE.Mesh(cone_geo, cone_mat);
+  // cone.castShadow = true;
+  // cone.receiveShadow = true;
+  return cone;
 };
 
 /** Creates a Plane Object3D with the given properties.
@@ -230,32 +230,32 @@ export function createCone(name, rad, height, radSeg, heightSeg, col, met, rou, 
  * @returns the created `Plane`
  */
 export function createPlane(width, height, widthSegments, heightSegments, col, met, rou, dis_map, dis_scale, dis_bias, pos, isWireframe) {
-    const plane_geo = new THREE.PlaneGeometry(width, height, widthSegments, heightSegments);
-    let plane_height;
-    if (dis_map === '') {
-        plane_height = false;
-    } else {
-        plane_height = textureLoader.load('' + dis_map);
-    }
-    const plane_mat = new THREE.MeshStandardMaterial({
-        color: col,
-        metalness: met,
-        roughness: rou,
-        displacementMap: plane_height,
-        displacementScale: dis_scale,
-        displacementBias: dis_bias,
-        wireframe: isWireframe
-    });
-    const plane = new THREE.Mesh(plane_geo, plane_mat);
-    plane.rotation.x = (Math.PI / -2);
-    plane.position.y = pos.y;
-    return plane;
+  const plane_geo = new THREE.PlaneGeometry(width, height, widthSegments, heightSegments);
+  let plane_height;
+  if (dis_map === '') {
+    plane_height = false;
+  } else {
+    plane_height = textureLoader.load('' + dis_map);
+  }
+  const plane_mat = new THREE.MeshStandardMaterial({
+    color: col,
+    metalness: met,
+    roughness: rou,
+    displacementMap: plane_height,
+    displacementScale: dis_scale,
+    displacementBias: dis_bias,
+    wireframe: isWireframe
+  });
+  const plane = new THREE.Mesh(plane_geo, plane_mat);
+  plane.rotation.x = (Math.PI / -2);
+  plane.position.y = pos.y;
+  return plane;
 };
 
 /** Loads and creates a background for the scene
  * 
  */
 export function createBackground() {
-    const spaceTexture = textureLoader.load('./images/space.jpg');
-    return spaceTexture;
+  const spaceTexture = textureLoader.load('./images/space.jpg');
+  return spaceTexture;
 };
