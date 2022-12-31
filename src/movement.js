@@ -49,7 +49,7 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
   };
 
   function moveToSlide6() {
-    move(sphere6, { x: 30, y: -30, z: 100 }, 6, "slide-6");
+    move(sphere6, { x: 30, y: -30, z: 100 }, 6, "contact");
     slideIndex = 6;
     document.getElementById("btn-6").style.backgroundColor = "purple";
   };
@@ -135,14 +135,10 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
       y: focalLoc.y,
       z: focalLoc.z,
       duration: 4
-    })
-      .eventCallback("onComplete", function () {
-        // Temp fix to having slides overlap when changing too quickly. 
-        // TODO: Ensure slides ONLY show when camera stops moving.
-        hideSlidesDisplay();
-        // Show only the current slide when movement stops.
-        // document.getElementById(currentSlide).style.display = 'block'; // TEMP
-      });
+    });
+
+    // Show the current slide
+    document.getElementById(currentSlide).style.display = 'block'; // TEMP
   };
 
   // Change all Nav Buttons back to the unselected state
