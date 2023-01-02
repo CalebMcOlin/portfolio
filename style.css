@@ -155,14 +155,17 @@ svg {
   width: 100px;
 }
 
-.svg-icon:hover .media-icon {
-  fill: purple
-}
-
 #links a {
   text-decoration: none;
   color: #F5D256;
 }
 
+#links a:hover .media-icon {
+  fill: purple;
+}
+
+#links a:hover {
+  color: purple;
+}
 /* end CONTACT */
 /* end SLIDES  */

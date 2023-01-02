@@ -102,7 +102,17 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     };
   };
 
-  // Moves the camera to the given Object3D
+  //
+  /**
+   * Moves the camera to a view a Vector3 location. 
+   * 
+   * Calculates the Vector3 location for the camera given two seperate Vector3 and a distance to the closest Vector3.
+   * 
+   * @param {Vector3} targetPos Vector3 repersenting the target location.
+   * @param {Vector3} focalPos Vector3 repersenting the focal location for the camera. (What the camera is looking at).
+   * @param {number} distFrom The distance the camera is from the target.
+   * @param {number} currentSlide The number for the slide at the target location.
+   */
   function move(targetPos, focalPos, distFrom, currentSlide) {
 
     // Hide the slides
