@@ -149,12 +149,6 @@ aside {
   align-items: center;
 }
 
-#links img,
-svg {
-  height: 100px;
-  width: 100px;
-}
-
 #links a {
   text-decoration: none;
   color: #F5D256;
