@@ -18,32 +18,32 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
 
   // Each object's move funtions
   function moveToSlide1() {
-    move(sphere1, { x: 0, y: 0, z: 0 }, 6, "slide-1");
+    move(sphere1, { x: 0, y: 0, z: 0 }, 6, "home");
     slideIndex = 1;
     document.getElementById("btn-1").style.backgroundColor = "purple";
   };
 
   function moveToSlide2() {
-    move(sphere2, { x: 0, y: 0, z: 0 }, 6, "slide-2");
+    move(sphere2, { x: 0, y: 0, z: 0 }, 6, "inter1");
     slideIndex = 2;
     document.getElementById("btn-2").style.backgroundColor = "purple";
   };
 
   function moveToSlide3() {
     // The `targetPos` need to be custom and static here here because the target is moving will mess up the camera location
-    move({ position: { x: -200, y: 10, z: 27 } }, { x: -30, y: 0, z: -90 }, 6, "slide-3");
+    move({ position: { x: -200, y: 10, z: 27 } }, { x: -30, y: 0, z: -90 }, 6, "inter2");
     slideIndex = 3;
     document.getElementById("btn-3").style.backgroundColor = "purple";
   };
 
   function moveToSlide4() {
-    move(sphere4, { x: 216, y: 50, z: 31 }, 6, "slide-4");
+    move(sphere4, { x: 216, y: 50, z: 31 }, 6, "article");
     slideIndex = 4;
     document.getElementById("btn-4").style.backgroundColor = "purple";
   };
 
   function moveToSlide5() {
-    move(sphere5, { x: -203, y: 0, z: 275 }, 6, "slide-5");
+    move(sphere5, { x: -203, y: 0, z: 275 }, 6, "website");
     slideIndex = 5;
     document.getElementById("btn-5").style.backgroundColor = "purple";
   };

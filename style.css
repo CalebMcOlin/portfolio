@@ -74,25 +74,28 @@ canvas {
 /* end NAVIGATION */
 
 /* start SLIDES  */
-.slides {
-  position: absolute;
-  display: none;
-  width: 75%;
-  height: 85%;
-  top: 5%;
-  bottom: 10%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
-  background: rgb(14, 16, 39, 0.7);
-}
-
 #wrapper {
   position: relative;
   height: 100vh;
   display: flex;
   justify-content: space-between;
   place-items: center;
+}
+
+.slides {
+  position: absolute;
+  display: none;
+  width: 75%;
+  height: 85%;
+  overflow-y: auto;
+  /* Scroll colors only compatable with firefox */
+  scrollbar-color: purple #F5D256;
+  top: 5%;
+  bottom: 10%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background: rgb(14, 16, 39, 0.7);
 }
 
 h1 {
