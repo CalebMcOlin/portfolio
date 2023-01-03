@@ -89,13 +89,13 @@ canvas {
   height: 85%;
   overflow-y: auto;
   /* Scroll colors only compatable with firefox */
-  scrollbar-color: purple #F5D256;
+  scrollbar-color: #7A287C #F5D256;
   top: 5%;
   bottom: 10%;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  background: rgb(14, 16, 39, 0.7);
+  background: rgba(14, 16, 39, 0.7);
 }
 
 h1 {
@@ -103,6 +103,64 @@ h1 {
   padding: 10px;
   margin-bottom: 10px;
 }
+
+/* start WEBSITE */
+#website {
+  text-align: center;
+}
+
+#website-about {
+  margin-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 1.1em;
+}
+
+#website-about p {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.underline:after {
+  content: '';
+  display: inline-block;
+  width: 30%;
+  height: 1px;
+  background-color: black;
+  margin-bottom: 10px;
+}
+
+#website-built-items img {
+  height: 100px;
+}
+
+#website-built-libraries img {
+  height: 80px;
+}
+
+#website-built a {
+  text-decoration: none;
+  color: #F5D256;
+  font-style: italic;
+}
+
+#website-built {
+  padding: 30px 0px 10px 0px;
+  border-radius: 25% 10%;
+  background: rgba(255, 16, 240, 0.3);
+}
+
+#website-built-items {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+#website-built-libraries {
+  display: flex;
+  justify-content: space-evenly;
+}
+/* end WEBSITE */
 
 /* start CONTACT */
 figure {
@@ -121,9 +179,9 @@ figcaption {
   font-style: italic;
 }
 
-aside {
+#contact aside {
   float: right;
-  width: 65%;
+  width: 66%;
 }
 
 #about {
@@ -158,11 +216,11 @@ aside {
 }
 
 #links a:hover .media-icon {
-  fill: purple;
+  fill: #7A287C;
 }
 
 #links a:hover {
-  color: purple;
+  color: #7A287C;
 }
 /* end CONTACT */
 /* end SLIDES  */
