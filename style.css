@@ -104,6 +104,66 @@ h1 {
   margin-bottom: 10px;
 }
 
+/* start ARTICLE */
+#article main {
+  display: flex;
+  justify-content: space-between;
+}
+
+#article-body {
+  width: 70%;
+  padding: 0px 10px;
+  font-size: 1.1em;
+}
+
+#article-body p {
+  margin-bottom: 20px;
+}
+
+#article-side-container {
+  width: 30%;
+}
+
+#article-side-body {
+  text-align: center;
+  align-items: center;
+  color: #7A287C;
+  background: rgba(245, 210, 86, 1);
+  border: 1px solid #7A287C;
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+  border-bottom-left-radius: 1em;
+  padding: 0px 5px 0px 5px;
+}
+
+#article-side-body-header {
+  color: #F5D256;
+  text-align: center;
+  background: #7A287C;
+  border: 2px solid #0E1027;
+  margin-top: 3px;
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+  border-bottom-left-radius: 1em;
+  padding: 10px 5px;
+}
+
+#article-side-body p {
+  padding: 5px 0px;
+}
+
+#article-side-body img {
+  max-width: 100%;
+}
+
+#article-side-body figure {
+  padding-bottom: 15px;
+}
+#article-side-body figcaption {
+  font-size: .8em;
+}
+/* end ARTICLE */
+
 /* start WEBSITE */
 #website {
   text-align: center;
@@ -121,7 +181,7 @@ h1 {
   text-align: left;
 }
 
-.underline:after {
+.website-built-underline:after {
   content: '';
   display: inline-block;
   width: 30%;
@@ -163,18 +223,18 @@ h1 {
 /* end WEBSITE */
 
 /* start CONTACT */
-figure {
+#contact figure {
   width: 30%;
   float: left;
   margin-bottom: 20px;
   margin-left: 20px;
 }
 
-figure img {
+#contact figure img {
   width: 100%;
 }
 
-figcaption {
+#contact figcaption {
   font-size: .7em;
   font-style: italic;
 }
@@ -184,42 +244,42 @@ figcaption {
   width: 66%;
 }
 
-#about {
+#contact-about {
   margin-bottom: 50px;
   padding-right: 20px;
   font-size: 1.1em;
 }
 
-#about p {
+#contact-about p {
   margin-top: 10px;
 }
 
-#social {
+#contact-social {
   text-align: center;
   padding-right: 20px;
 }
 
-#social h3 {
+#contact-social h3 {
   margin-bottom: 20px;
   font-size: 1.5em;
 }
 
-#links {
+#contact-links {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
-#links a {
+#contact-links a {
   text-decoration: none;
   color: #F5D256;
 }
 
-#links a:hover .media-icon {
+#contact-links a:hover .media-icon {
   fill: #7A287C;
 }
 
-#links a:hover {
+#contact-links a:hover {
   color: #7A287C;
 }
 /* end CONTACT */
