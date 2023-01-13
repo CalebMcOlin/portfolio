@@ -104,6 +104,27 @@ h1 {
   margin-bottom: 10px;
 }
 
+/* start INTERN_1 */
+#inter1-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+#inter1 main {
+  width: 70%;
+}
+
+#inter1 aside {
+  width: 30%;
+}
+
+#inter1 iframe {
+  width: 100%;
+  height: auto;
+}
+
+/* end INTERN_1 */
+
 /* start ARTICLE */
 #article main {
   display: flex;
