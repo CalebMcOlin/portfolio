@@ -122,8 +122,19 @@ h1 {
   width: 100%;
   height: auto;
 }
-
 /* end INTERN_1 */
+
+/* start INTERN_2 */
+#intern2-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+#intern2-bottom img,
+iframe {
+  height: 300px;
+}
+/* end INTERN_2 */
 
 /* start ARTICLE */
 #article main {
