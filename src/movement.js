@@ -24,14 +24,14 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
   };
 
   function moveToSlide2() {
-    move(sphere2, { x: 0, y: 0, z: 0 }, 6, "inter1");
+    move(sphere2, { x: 0, y: 0, z: 0 }, 6, "intern1");
     slideIndex = 2;
     document.getElementById("btn-2").style.backgroundColor = "purple";
   };
 
   function moveToSlide3() {
     // The `targetPos` need to be custom and static here here because the target is moving will mess up the camera location
-    move({ position: { x: -200, y: 10, z: 27 } }, { x: -30, y: 0, z: -90 }, 6, "inter2");
+    move({ position: { x: -200, y: 10, z: 27 } }, { x: -30, y: 0, z: -90 }, 6, "intern2");
     slideIndex = 3;
     document.getElementById("btn-3").style.backgroundColor = "purple";
   };
