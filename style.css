@@ -104,6 +104,83 @@ h1 {
   margin-bottom: 10px;
 }
 
+/* start HOME */
+#home-media-wrapper {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  /* border: 1px solid red; */
+}
+
+#home figure {
+  width: 100%;
+  height: 100%;
+  /* max-width: 500px; */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid blue; */
+}
+
+#home figure img {
+  width: 100%;
+}
+
+#home-summary-wrapper {
+  right: 0;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  /* border: 1px solid hotpink; */
+}
+
+#home-summary-body {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid yellow; */
+}
+
+#home-summary-content {
+  text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+  /* border: 1px solid green; */
+}
+#home-summary-content p:first-of-type {
+  font-size: 1.3em;
+  margin-bottom: 50px;
+}
+
+#home-summary-content-location {
+  font-size: .6em;
+}
+
+#home-summary-content p:last-of-type {
+  position: absolute;
+  justify-content: center;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  padding: 0 10px 0 10px;
+  font-size: .33em;
+  font-weight: normal;
+}
+/* end HOME */
+
 /* start INTERN_1 */
 #intern1 main {
   padding: 0px 10px;
