@@ -192,7 +192,7 @@ h1 {
 
 #intern2-media img,
 #intern2-media iframe {
-  height: 300px;
+  height: 250px;
 }
 /* end INTERN_2 */
 
@@ -209,7 +209,7 @@ h1 {
 }
 
 #article-body p {
-  margin-bottom: 20px;
+  margin: 0px 0px 20px 20px;
 }
 
 #article-side-container {
@@ -300,6 +300,7 @@ h1 {
   padding: 30px 0px 10px 0px;
   border-radius: 25% 10%;
   background: rgba(255, 16, 240, 0.3);
+  margin: 0px 5px;
 }
 
 #website-built-items {
