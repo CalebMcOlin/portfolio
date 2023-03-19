@@ -160,13 +160,18 @@ h1 {
   font-size: 3em;
   /* border: 1px solid green; */
 }
+
 #home-summary-content p:first-of-type {
   font-size: 1.3em;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
-#home-summary-content-location {
-  font-size: .6em;
+#is-a-text {
+  margin-bottom: 20px;
+}
+
+#is-a-text-word {
+  color: #7A287C;
 }
 
 #home-summary-content p:last-of-type {

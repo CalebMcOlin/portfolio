@@ -20,9 +20,11 @@ import {
 } from './src/objects';
 import { movement } from './src/movement';
 import * as TWEEN from '@tweenjs/tween.js';
+import { cycleWords } from './src/functions';
 
 // SCENE
 export const scene = new THREE.Scene();
+cycleWords(); // Start word animation
 
 // RENDERER
 const sizes = {
