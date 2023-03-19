@@ -21,6 +21,10 @@ body {
   color: #F5D256;
 }
 
+p {
+  line-height: 1.3;
+}
+
 canvas {
   position: fixed;
   top: 0;
@@ -124,7 +128,6 @@ a {
 #home figure {
   width: 100%;
   height: 100%;
-  /* max-width: 500px; */
   position: absolute;
   top: 0;
   bottom: 0;
@@ -201,25 +204,38 @@ a {
 #intern1-summary {
   padding: 0px 0px 0px 10px;
   font-size: 1.1em;
-  margin-bottom: 20px;
+}
+
+.intern1-summary-keywords {
+  font-weight: bold;
 }
 
 #intern1-summary p,
 #intern1-summary ul {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   padding: 0px 0px 0px 20px;
+}
+
+#intern1-summary li {
+  margin-top: 10px;
 }
 
 #intern1-media {
   float: right;
-  margin-left: 2px;
-  width: 30%;
+  width: 40%;
   text-align: center;
+  margin-left: 5px;
+}
+
+#intern1-media figure {
+  width: 100%;
+  height: 100%;
 }
 
 #intern1-media iframe {
-  width: auto;
-  height: auto;
+  aspect-ratio: 16 / 9;
+  height: 100%;
+  width: 100%;
 }
 
 #intern1-media figcaption {
@@ -237,43 +253,47 @@ a {
   font-size: 1.1em;
 }
 
-#intern2-summary p,
-#intern2-summary ul {
+#intern2-summary-description p {
   margin-bottom: 10px;
   padding: 0px 0px 0px 20px;
 }
 
-#intern2-media {
-  text-align: center;
+.intern2-summary-description-keywords {
+  font-weight: bold;
 }
 
-#intern2-media h4 {
-  margin-top: 20px;
-  font-size: 1.5em;
-}
-
-#intern2-media-body {
-  display: flex;
-  justify-content: space-between;
-}
-
-.intern2-media-built-underline:after {
-  content: '';
-  display: inline-block;
-  width: 30%;
-  height: 1px;
-  background-color: #F5D256;
-  margin-bottom: 10px;
-}
-
-#intern2 figcaption {
-  text-align: center;
-  font-size: .9em;
-}
-
-#intern2-media img,
-#intern2-media iframe {
+#intern2 figure,
+#intern2 img {
   height: 250px;
+  text-align: center;
+}
+
+#intern2 iframe {
+  aspect-ratio: 16 / 9;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+#intern2-summary figcaption {
+  font-size: .8em;
+  margin-bottom: 2px;
+}
+
+#intern2-summary-description figure {
+  float: right;
+  margin: 0px 0px 20px 5px;
+}
+
+#intern2-summary-contribution figure {
+  float: left;
+  /* visibility: hidden; */
+  margin-right: 20px;
+}
+
+#intern2-summary-contribution li {
+  margin-left: 325px;
+  margin-top: 10px;
 }
 /* end INTERN_2 */
 
