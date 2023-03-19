@@ -15,7 +15,7 @@ export function cycleWords() {
       setTimeout(function () {
         text.innerHTML = words[i];
         textSequence(++i);
-      }, 1500); // 1 second (in milliseconds)
+      }, 1500); // 1.5 second (in milliseconds)
 
     } else if (words.length == i) { // Loop
       textSequence(0);
