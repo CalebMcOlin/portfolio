@@ -212,7 +212,7 @@ a {
 
 #intern1-summary p,
 #intern1-summary ul {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding: 0px 0px 0px 20px;
 }
 
@@ -254,7 +254,7 @@ a {
 }
 
 #intern2-summary-description p {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding: 0px 0px 0px 20px;
 }
 
@@ -285,39 +285,42 @@ a {
   margin: 0px 0px 20px 5px;
 }
 
-#intern2-summary-contribution figure {
-  float: left;
-  /* visibility: hidden; */
-  margin-right: 20px;
-}
-
 #intern2-summary-contribution li {
-  margin-left: 325px;
+  margin-left: 20px;
   margin-top: 10px;
 }
 /* end INTERN_2 */
 
 /* start ARTICLE */
-#article main {
+#article-about {
+  margin-bottom: 20px;
+}
+#article-wrapper-summary {
+  padding: 0px 0px 0px 10px;
+}
+
+#article-wrapper {
+  margin: 0 0;
+  padding: 0 0;
   display: flex;
   justify-content: space-between;
 }
 
-#article-body {
+#article-wrapper-summary {
   width: 70%;
   /* padding: 0px 10px; */
   font-size: 1.1em;
 }
 
-#article-body p {
+#article-wrapper-summary p {
   margin: 0px 0px 20px 20px;
 }
 
-#article-side-container {
+#article-wrapper-side {
   width: 30%;
 }
 
-#article-side-body {
+#article-wrapper-side-body {
   text-align: center;
   align-items: center;
   color: #7A287C;
@@ -329,7 +332,7 @@ a {
   padding: 0px 5px 0px 5px;
 }
 
-#article-side-body-header {
+#article-wrapper-side-body-header {
   color: #F5D256;
   text-align: center;
   background: #7A287C;
@@ -341,18 +344,18 @@ a {
   padding: 10px 5px;
 }
 
-#article-side-body p {
+#article-wrapper-side-body p {
   padding: 5px 0px;
 }
 
-#article-side-body img {
+#article-wrapper-side-body img {
   max-width: 100%;
 }
 
-#article-side-body figure {
+#article-wrapper-side-body figure {
   padding-bottom: 15px;
 }
-#article-side-body figcaption {
+#article-wrapper-side-body figcaption {
   font-size: .8em;
 }
 /* end ARTICLE */
