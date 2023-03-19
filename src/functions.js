@@ -1,5 +1,5 @@
 export function cycleWords() {
-  let text = document.getElementById("is-a-text-word");
+  let text = document.getElementById("am-a-text-word");
   let words = ["Developer",
     "Thinker",
     "Self-Starter",
