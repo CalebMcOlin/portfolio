@@ -46,28 +46,43 @@ canvas {
   margin-left: 2%;
 }
 
-.navBar {
+nav {
   position: absolute;
-  max-width: 300px;
-  width: 75%;
-  bottom: 4%;
+  bottom: 3%;
+  width: 80%;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  display: flex;
-  justify-content: space-between;
 }
 
-.navBarBtn {
-  border-radius: 100%;
-  width: 20px;
-  height: 20px;
-  border: 2px solid black;
-  background-color: white;
+nav li {
+  list-style-type: none;
+  float: left;
+  width: 16.666%;
+  text-align: center;
 }
 
-.navBarBtn:hover {
-  background-color: grey;
+nav a {
+  border: 2px solid #F5D256;
+  padding: 8.4% 4.4%;
+  text-decoration: none;
+  color: #F5D256;
+  display: block;
+}
+
+nav #btn-1 {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+nav #btn-6 {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+nav a:hover {
+  color: #CB2B88;
+  border-color: #CB2B88;
 }
 /* end NAVIGATION */
 

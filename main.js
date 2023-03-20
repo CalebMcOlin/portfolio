@@ -250,8 +250,8 @@ function animate(t) {
 
 
 // DEBUG ** DEVELOPMENT USE ONLY ** DEBUG //
-import * as dat from 'dat.gui';
-const gui = new dat.GUI();
+// import * as dat from 'dat.gui';
+// const gui = new dat.GUI();
 function lightDebugHelper(light1, light2, light3) {
   // Helpers
   const lightHelper1 = new THREE.PointLightHelper(light1, 0.5);
