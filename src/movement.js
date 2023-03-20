@@ -20,38 +20,38 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
   function moveToSlide1() {
     move(sphere1, { x: 0, y: 0, z: 0 }, 6, "home");
     slideIndex = 1;
-    document.getElementById("btn-1").style.backgroundColor = "purple";
+    document.getElementById("btn-1").style.backgroundColor = "#7A287C";
   };
 
   function moveToSlide2() {
     move(sphere2, { x: 0, y: 0, z: 0 }, 6, "intern1");
     slideIndex = 2;
-    document.getElementById("btn-2").style.backgroundColor = "purple";
+    document.getElementById("btn-2").style.backgroundColor = "#7A287C";
   };
 
   function moveToSlide3() {
     // The `targetPos` need to be custom and static here here because the target is moving will mess up the camera location
     move({ position: { x: -200, y: 10, z: 27 } }, { x: -30, y: 0, z: -90 }, 6, "intern2");
     slideIndex = 3;
-    document.getElementById("btn-3").style.backgroundColor = "purple";
+    document.getElementById("btn-3").style.backgroundColor = "#7A287C";
   };
 
   function moveToSlide4() {
     move(sphere4, { x: 216, y: 50, z: 31 }, 6, "article");
     slideIndex = 4;
-    document.getElementById("btn-4").style.backgroundColor = "purple";
+    document.getElementById("btn-4").style.backgroundColor = "#7A287C";
   };
 
   function moveToSlide5() {
     move(sphere5, { x: -203, y: 0, z: 275 }, 6, "website");
     slideIndex = 5;
-    document.getElementById("btn-5").style.backgroundColor = "purple";
+    document.getElementById("btn-5").style.backgroundColor = "#7A287C";
   };
 
   function moveToSlide6() {
     move(sphere6, { x: 30, y: -30, z: 100 }, 6, "contact");
     slideIndex = 6;
-    document.getElementById("btn-6").style.backgroundColor = "purple";
+    document.getElementById("btn-6").style.backgroundColor = "#7A287C";
   };
 
   // Moves the slides back by one (Slide 1 loops to Slide 6)
@@ -155,7 +155,7 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
   function resetNavColor() {
     let elements = document.getElementsByClassName("navBarBtn"); // get all elements
     for (let i = 0; i < elements.length; i++) {
-      elements[i].style.backgroundColor = "white";
+      elements[i].style.backgroundColor = "transparent";
     };
   };
 
