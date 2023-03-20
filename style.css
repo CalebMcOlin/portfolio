@@ -34,14 +34,8 @@ canvas {
 /* end GLOBAL */
 
 /* start NAVIGATION */
-.navBtn img {
-  background: white;
-  border-radius: 50%;
-  width: 50px;
-}
-
-.navBtn img:hover {
-  background: grey;
+.navBtn:hover .nav-svg {
+  stroke: #CB2B88;
 }
 
 #btn-R {
