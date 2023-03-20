@@ -256,6 +256,6 @@ export function createPlane(width, height, widthSegments, heightSegments, col, m
  * 
  */
 export function createBackground() {
-  const spaceTexture = textureLoader.load('./images/space.jpg');
+  const spaceTexture = textureLoader.load('./res/UI/space-bg.jpg');
   return spaceTexture;
 };
