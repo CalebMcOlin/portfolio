@@ -18,38 +18,38 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
 
   // Each object's move funtions
   function moveToSlide1() {
-    move(sphere1, { x: 0, y: 0, z: 0 }, 6, "slide-1");
+    move(sphere1, { x: 0, y: 0, z: 0 }, 6, "home");
     slideIndex = 1;
     document.getElementById("btn-1").style.backgroundColor = "purple";
   };
 
   function moveToSlide2() {
-    move(sphere2, { x: 0, y: 0, z: 0 }, 6, "slide-2");
+    move(sphere2, { x: 0, y: 0, z: 0 }, 6, "intern1");
     slideIndex = 2;
     document.getElementById("btn-2").style.backgroundColor = "purple";
   };
 
   function moveToSlide3() {
     // The `targetPos` need to be custom and static here here because the target is moving will mess up the camera location
-    move({ position: { x: -200, y: 10, z: 27 } }, { x: -30, y: 0, z: -90 }, 6, "slide-3");
+    move({ position: { x: -200, y: 10, z: 27 } }, { x: -30, y: 0, z: -90 }, 6, "intern2");
     slideIndex = 3;
     document.getElementById("btn-3").style.backgroundColor = "purple";
   };
 
   function moveToSlide4() {
-    move(sphere4, { x: 216, y: 50, z: 31 }, 6, "slide-4");
+    move(sphere4, { x: 216, y: 50, z: 31 }, 6, "article");
     slideIndex = 4;
     document.getElementById("btn-4").style.backgroundColor = "purple";
   };
 
   function moveToSlide5() {
-    move(sphere5, { x: -203, y: 0, z: 275 }, 6, "slide-5");
+    move(sphere5, { x: -203, y: 0, z: 275 }, 6, "website");
     slideIndex = 5;
     document.getElementById("btn-5").style.backgroundColor = "purple";
   };
 
   function moveToSlide6() {
-    move(sphere6, { x: 30, y: -30, z: 100 }, 6, "slide-6");
+    move(sphere6, { x: 30, y: -30, z: 100 }, 6, "contact");
     slideIndex = 6;
     document.getElementById("btn-6").style.backgroundColor = "purple";
   };
@@ -102,7 +102,17 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     };
   };
 
-  // Moves the camera to the given Object3D
+  //
+  /**
+   * Moves the camera to a view a Vector3 location. 
+   * 
+   * Calculates the Vector3 location for the camera given two seperate Vector3 and a distance to the closest Vector3.
+   * 
+   * @param {Vector3} targetPos Vector3 repersenting the target location.
+   * @param {Vector3} focalPos Vector3 repersenting the focal location for the camera. (What the camera is looking at).
+   * @param {number} distFrom The distance the camera is from the target.
+   * @param {number} currentSlide The number for the slide at the target location.
+   */
   function move(targetPos, focalPos, distFrom, currentSlide) {
 
     // Hide the slides
@@ -135,14 +145,10 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
       y: focalLoc.y,
       z: focalLoc.z,
       duration: 4
-    })
-      .eventCallback("onComplete", function () {
-        // Temp fix to having slides overlap when changing too quickly. 
-        // TODO: Ensure slides ONLY show when camera stops moving.
-        hideSlidesDisplay();
-        // Show only the current slide when movement stops.
-        // document.getElementById(currentSlide).style.display = 'block'; // TEMP
-      });
+    });
+
+    // Show the current slide
+    document.getElementById(currentSlide).style.display = 'block'; // TEMP
   };
 
   // Change all Nav Buttons back to the unselected state
