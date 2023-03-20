@@ -31,24 +31,20 @@ canvas {
   left: 0;
   outline: none;
 }
+
+#wrapper {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+}
 /* end GLOBAL */
 
 /* start NAVIGATION */
-.navBtn:hover .nav-svg {
-  stroke: #CB2B88;
-}
-
-#btn-R {
-  margin-right: 2%;
-}
-
-#btn-L {
-  margin-left: 2%;
-}
-
 nav {
   position: absolute;
-  bottom: 3%;
+  bottom: 10px;
   width: 80%;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -84,17 +80,22 @@ nav a:hover {
   color: #CB2B88;
   border-color: #CB2B88;
 }
+
+/* LEFT and RIGHT nav buttons */
+.navBtn:hover .nav-svg {
+  stroke: #CB2B88;
+}
+
+#btn-R {
+  margin-right: 2%;
+}
+
+#btn-L {
+  margin-left: 2%;
+}
 /* end NAVIGATION */
 
 /* start SLIDES  */
-#wrapper {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  place-items: center;
-}
-
 .slides {
   position: absolute;
   display: none;
