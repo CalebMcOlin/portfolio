@@ -5,6 +5,14 @@ import { gsap } from "gsap";
 export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, sphere5, sphere6) {
 
   let slideIndex = 1;
+  // Final locations for the camera at each slide
+  // Currently only the "x" is used. But "y" and "z" are marked if needed later in devlopment
+  let homeLoc = { x: -23, y: -23, z: -23 };
+  let intern1Loc = { x: -186, y: 41, z: -31 };
+  let intern2Loc = { x: -205, y: 10, z: 30 };
+  let articleLoc = { x: 93, y: -32, z: 190 };
+  let websiteLoc = { x: 281, y: -38, z: -209 };
+  let constactLoc = { x: -212, y: -43, z: -258 };
 
   // ONLICKS
   document.getElementById('btn-1').addEventListener("click", (event) => { moveToSlide1(event) }, false);
@@ -21,12 +29,14 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     move(sphere1, { x: 0, y: 0, z: 0 }, 6, "home");
     slideIndex = 1;
     document.getElementById("btn-1").style.backgroundColor = "#7A287C";
+    showSlidesDisply('home', homeLoc.x);
   };
 
   function moveToSlide2() {
     move(sphere2, { x: 0, y: 0, z: 0 }, 6, "intern1");
     slideIndex = 2;
     document.getElementById("btn-2").style.backgroundColor = "#7A287C";
+    showSlidesDisply('intern1', intern1Loc.x);
   };
 
   function moveToSlide3() {
@@ -34,24 +44,28 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     move({ position: { x: -200, y: 10, z: 27 } }, { x: -30, y: 0, z: -90 }, 6, "intern2");
     slideIndex = 3;
     document.getElementById("btn-3").style.backgroundColor = "#7A287C";
+    showSlidesDisply('intern2', intern2Loc.x);
   };
 
   function moveToSlide4() {
     move(sphere4, { x: 216, y: 50, z: 31 }, 6, "article");
     slideIndex = 4;
     document.getElementById("btn-4").style.backgroundColor = "#7A287C";
+    showSlidesDisply('article', articleLoc.x);
   };
 
   function moveToSlide5() {
     move(sphere5, { x: -203, y: 0, z: 275 }, 6, "website");
     slideIndex = 5;
     document.getElementById("btn-5").style.backgroundColor = "#7A287C";
+    showSlidesDisply('website', websiteLoc.x);
   };
 
   function moveToSlide6() {
     move(sphere6, { x: 30, y: -30, z: 100 }, 6, "contact");
     slideIndex = 6;
     document.getElementById("btn-6").style.backgroundColor = "#7A287C";
+    showSlidesDisply('contact', constactLoc.x);
   };
 
   // Moves the slides back by one (Slide 1 loops to Slide 6)
@@ -111,13 +125,11 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
    * @param {Vector3} targetPos Vector3 repersenting the target location.
    * @param {Vector3} focalPos Vector3 repersenting the focal location for the camera. (What the camera is looking at).
    * @param {number} distFrom The distance the camera is from the target.
-   * @param {number} currentSlide The number for the slide at the target location.
    */
-  function move(targetPos, focalPos, distFrom, currentSlide) {
+  function move(targetPos, focalPos, distFrom) {
 
-    // Hide the slides
+    // Hide all slides before camera moves
     hideSlidesDisplay();
-
     // Reset all nav button colors
     resetNavColor();
 
@@ -146,9 +158,6 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
       z: focalLoc.z,
       duration: 4
     });
-
-    // Show the current slide
-    document.getElementById(currentSlide).style.display = 'block'; // TEMP
   };
 
   // Change all Nav Buttons back to the unselected state
@@ -159,7 +168,8 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     };
   };
 
-  // sets all Slides to display: none
+  /** Sets all Slides to display: none
+   */
   function hideSlidesDisplay() {
     let elements = document.getElementsByClassName("slides"); // get all elements
     for (let i = 0; i < elements.length; i++) {
@@ -167,5 +177,19 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     };
   };
 
-  moveToSlide1();
+  /** Show the slide IF the camera reaches a certain location with in the given time
+   * 
+   * @param {*} currentSlide the slide id that needs to show
+   * @param {*} x The "x" location the camera need to be located for the slide to show
+   */
+  function showSlidesDisply(currentSlide, x) {
+    setTimeout(() => {
+      hideSlidesDisplay();
+      if (Math.round(camera.position.x) == Math.round(x)) {
+        document.getElementById(currentSlide).style.display = 'block';
+      }
+    }, 4500);
+  };
+
+  moveToSlide1(); //Start on the first slide
 };
