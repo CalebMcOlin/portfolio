@@ -21,6 +21,8 @@ import {
 import { movement } from './src/movement';
 import * as TWEEN from '@tweenjs/tween.js';
 import { cycleWords } from './src/functions';
+import planeHightmap from './res/plane-heightmap.png';
+import sphereNormalmap from './res/sphere-normal-map.jpg';
 
 // SCENE
 export const scene = new THREE.Scene();
@@ -60,8 +62,8 @@ function onWindowResize() {
 // SCENE OBJECTS
 // Foundation
 scene.background = createBackground();
-const plane = createPlane(1000, 1000, 100, 100, 0x292929, 0.5, 0.5, '/res/plane-heightmap.png', 110, -55, { x: 0, y: -5, z: 0 }, false);
-const planeGrid = createPlane(1000, 1000, 100, 100, 0x290CFF, 0, 0, '/res/plane-heightmap.png', 110, -55, { x: 0, y: -5, z: 0 }, true);
+const plane = createPlane(1000, 1000, 100, 100, 0x292929, 0.5, 0.5, planeHightmap, 110, -55, { x: 0, y: -5, z: 0 }, false);
+const planeGrid = createPlane(1000, 1000, 100, 100, 0x290CFF, 0, 0, planeHightmap, 110, -55, { x: 0, y: -5, z: 0 }, true);
 const planeFlat = createPlane(1000, 1000, 1, 1, 0x000000, 0, 0, '', 0, 0, { x: 0, y: -59.5, z: 0 }, false);
 const planeFlatGrid = createPlane(1000, 1000, 100, 100, 0xFF019A, 0, 0, '', 0, 0, { x: -59.5, y: -59, z: 0 }, true);
 const torus = createTorus("Torus", 35, 2, 20, 64, 0xfff000, 0.5, 0.5, { x: 108, y: 40, z: 38 });
@@ -79,12 +81,12 @@ scene.add(torusLight);
 
 // Slide 1 object(s)
 const pLight1 = createPointLight(0xffffff, 3, 6, 1, { x: -23.5, y: -20, z: -20 });
-const slide1Sphere = createSphere("Sphere 1", 0.5, 0xFF10F0, .4, .5, '../res/sphere-normal-map.jpg', { x: -20, y: -20, z: -20 });
-const slide1Child1 = createChildSphere("Sphere Child 1", 0.1, 0xFF3131, .4, .5, '../res/sphere-normal-map.jpg');
+const slide1Sphere = createSphere("Sphere 1", 0.5, 0xFF10F0, .4, .5, sphereNormalmap, { x: -20, y: -20, z: -20 });
+const slide1Child1 = createChildSphere("Sphere Child 1", 0.1, 0xFF3131, .4, .5, sphereNormalmap);
 const slide1Child1Parent = createPatentObject(slide1Sphere.position);
-const slide1Child2 = createChildSphere("Sphere Child 2", 0.2, 0x39FF14, .4, .5, '../res/sphere-normal-map.jpg');
+const slide1Child2 = createChildSphere("Sphere Child 2", 0.2, 0x39FF14, .4, .5, sphereNormalmap);
 const slide1Child2Parent = createPatentObject(slide1Sphere.position);
-const slide1Child3 = createChildSphere("Sphere Child 3", 0.2, 0x1F51FF, .4, .5, '../res/sphere-normal-map.jpg');
+const slide1Child3 = createChildSphere("Sphere Child 3", 0.2, 0x1F51FF, .4, .5, sphereNormalmap);
 const slide1Child3Parent = createPatentObject(slide1Sphere.position);
 scene.add(pLight1);
 scene.add(slide1Sphere);
@@ -108,10 +110,10 @@ scene.add(slide2OctahedronWire);
 
 // Slide 3 object(s)
 const pLight3 = createPointLight(0xffffff, 2, 8, 1.5, { x: -201, y: 11.4, z: 26.8 });
-const slide3Cone1 = createCone("Cone 3-1", 1, 1.4, 4, 1, 0x00000, .4, .5, '../res/sphere-normal-map.jpg', false);
-const slide3Cone1Wire = createCone("Cone 3-1 Wire", 1, 1.4, 4, 1, 0xFF019A, 0, 0, '../res/sphere-normal-map.jpg', true);
-const slide3Cone2 = createCone("Cone 3-2", 1, 1.4, 4, 1, 0x00000, .4, .5, '../res/sphere-normal-map.jpg', false);
-const slide3Cone2Wire = createCone("Cone 3-2 Wire", 1, 1.4, 4, 1, 0xFF019A, 0, 0, '../res/sphere-normal-map.jpg', true);
+const slide3Cone1 = createCone("Cone 3-1", 1, 1.4, 4, 1, 0x00000, .4, .5, sphereNormalmap, false);
+const slide3Cone1Wire = createCone("Cone 3-1 Wire", 1, 1.4, 4, 1, 0xFF019A, 0, 0, sphereNormalmap, true);
+const slide3Cone2 = createCone("Cone 3-2", 1, 1.4, 4, 1, 0x00000, .4, .5, sphereNormalmap, false);
+const slide3Cone2Wire = createCone("Cone 3-2 Wire", 1, 1.4, 4, 1, 0xFF019A, 0, 0, sphereNormalmap, true);
 slide3Cone1.position.set(-200, 10.8, 27);
 slide3Cone2.position.set(-200, 9.2, 27);
 slide3Cone2.rotation.x = (Math.PI);
@@ -162,16 +164,16 @@ slide3Cone2Tween1.start();
 
 // Slide 4 object(s)
 const pLight4 = createPointLight(0xffffff, 2, 4.5, 1, { x: 93, y: -30, z: 187 });
-const torusKnot = createTorusKnot("TorusKnot", 1, .2, 60, 12, 5, 4, 0x1F51FF, .4, .5, '../res/sphere-normal-map.jpg', { x: 96, y: -30, z: 186 });
+const torusKnot = createTorusKnot("TorusKnot", 1, .2, 60, 12, 5, 4, 0x1F51FF, .4, .5, sphereNormalmap, { x: 96, y: -30, z: 186 });
 let scalePerFrame = 0.003; // scale the capsule up and down
 scene.add(pLight4);
 scene.add(torusKnot);
 
 // Slide 5 object(s)
 const pLight5 = createPointLight(0xffffff, 1, 10, 1, { x: 279, y: -38, z: -207.5 });
-const slide5Icosahedron = createIcosahedron("Icosahedron 1", 1, 0x9D00FF, .4, .5, '../res/sphere-normal-map.jpg', { x: 277, y: -38, z: -205 }, false);
-const slide5IcosahedronLeft = createIcosahedron("Icosahedron left", .4, 0x1F51FF, .4, .5, '../res/sphere-normal-map.jpg', { x: 279, y: -38, z: -203 }, false);
-const slide5IcosahedronRight = createIcosahedron("Icosahedron right", .4, 0x1F51FF, .4, .5, '../res/sphere-normal-map.jpg', { x: 275, y: -38, z: -207 }, false);
+const slide5Icosahedron = createIcosahedron("Icosahedron 1", 1, 0x9D00FF, .4, .5, sphereNormalmap, { x: 277, y: -38, z: -205 }, false);
+const slide5IcosahedronLeft = createIcosahedron("Icosahedron left", .4, 0x1F51FF, .4, .5, sphereNormalmap, { x: 279, y: -38, z: -203 }, false);
+const slide5IcosahedronRight = createIcosahedron("Icosahedron right", .4, 0x1F51FF, .4, .5, sphereNormalmap, { x: 275, y: -38, z: -207 }, false);
 scene.add(pLight5);
 scene.add(slide5Icosahedron);
 scene.add(slide5IcosahedronRight);
@@ -180,10 +182,10 @@ scene.add(slide5IcosahedronLeft);
 // Slide 6 object(s)
 const pLight6 = createPointLight(0xffffff, 1, 4, 1.5, { x: -209, y: -43, z: -253 });
 const slide6ConeParent = createPatentObject({ x: -209, y: -43, z: -253 });
-const slide6Cone1 = createCone("Cone 1", .5, 1.5, 6, 1, 0xFFFF00, .4, .5, '../res/sphere-normal-map.jpg', false);
-const slide6Cone2 = createCone("Cone 2", .5, 1.5, 6, 1, 0x9D00FF, .4, .5, '../res/sphere-normal-map.jpg', false);
-const slide6Cone3 = createCone("Cone 3", .5, 1.5, 6, 1, 0xFF3131, .4, .5, '../res/sphere-normal-map.jpg', false);
-const slide6Cone4 = createCone("Cone 4", .5, 1.5, 6, 1, 0x1F51FF, .4, .5, '../res/sphere-normal-map.jpg', false);
+const slide6Cone1 = createCone("Cone 1", .5, 1.5, 6, 1, 0xFFFF00, .4, .5, sphereNormalmap, false);
+const slide6Cone2 = createCone("Cone 2", .5, 1.5, 6, 1, 0x9D00FF, .4, .5, sphereNormalmap, false);
+const slide6Cone3 = createCone("Cone 3", .5, 1.5, 6, 1, 0xFF3131, .4, .5, sphereNormalmap, false);
+const slide6Cone4 = createCone("Cone 4", .5, 1.5, 6, 1, 0x1F51FF, .4, .5, sphereNormalmap, false);
 slide6ConeParent.add(slide6Cone1);
 slide6ConeParent.add(slide6Cone2);
 slide6ConeParent.add(slide6Cone3);
