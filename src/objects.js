@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import bg from '../res/space-bg.jpg';
 
 const textureLoader = new THREE.TextureLoader();
 
@@ -256,6 +257,6 @@ export function createPlane(width, height, widthSegments, heightSegments, col, m
  * 
  */
 export function createBackground() {
-  const spaceTexture = textureLoader.load('./res/space-bg.jpg');
+  const spaceTexture = textureLoader.load(bg);
   return spaceTexture;
 };
