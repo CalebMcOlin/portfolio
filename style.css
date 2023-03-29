@@ -85,14 +85,6 @@ nav a:hover {
 .navBtn:hover .nav-svg {
   stroke: #CB2B88;
 }
-
-#btn-R {
-  margin-right: 2%;
-}
-
-#btn-L {
-  margin-left: 2%;
-}
 /* end NAVIGATION */
 
 /* start SLIDES  */
@@ -504,3 +496,87 @@ a {
 }
 /* end CONTACT */
 /* end SLIDES  */
+
+/* DYNAMIC STYLES */
+@media screen and (max-width: 720px) {
+  /* NAVIGATION */
+  #btn-2::after {
+    content: "Job 1";
+  }
+  #btn-3::after {
+    content: "Job 2";
+  }
+  #btn-4::after {
+    content: "Article";
+  }
+  #btn-5::after {
+    content: "Site";
+  }
+  #btn-6::after {
+    content: "Info";
+  }
+}
+
+@media screen and (min-width: 721px) {
+  /* NAVIGATION */
+  #btn-2::after {
+    content: "Experience 1";
+  }
+  #btn-3::after {
+    content: "Experience 2";
+  }
+  #btn-4::after {
+    content: "Article";
+  }
+  #btn-5::after {
+    content: "This Site";
+  }
+  #btn-6::after {
+    content: "Contact";
+  }
+}
+
+@media screen and (max-width: 800px) {
+  /* NAVIGATION */
+  .navBtn {
+    display: none;
+  }
+  .slides {
+    width: 95%;
+  }
+  nav {
+    width: 95%;
+  }
+}
+
+@media screen and (min-width: 801px) {
+  /* NAVIGATION */
+  .navBtn {
+    display: block;
+  }
+  .slides {
+    width: 80%;
+  }
+  nav {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1401px) {
+  /* NAVIGATION */
+  #btn-2::after {
+    content: "Professional Experience 1";
+  }
+  #btn-3::after {
+    content: "Professional Experience 2";
+  }
+  #btn-4::after {
+    content: "I Wrote An Article";
+  }
+  #btn-5::after {
+    content: "About This Website";
+  }
+  #btn-6::after {
+    content: "How To Contact Me";
+  }
+}
