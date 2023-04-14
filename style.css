@@ -589,6 +589,24 @@ a {
   }
 }
 
+@media (min-height: 825px) and (min-width: 760px) {
+  /* WEBSITE */
+  #website-about {
+    position: absolute;
+    top: 10%;
+    height: 30%;
+  }
+  #website-about p {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #website-built {
+    position: absolute;
+    bottom: 1%;
+  }
+}
+
 @media (min-width: 1401px) {
   /* NAVIGATION */
   #btn-2::after {
