@@ -263,7 +263,7 @@ a {
 
 #intern2-summary {
   padding: 0px 0px 0px 10px;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 #intern2-summary-description p {
@@ -295,12 +295,16 @@ a {
 
 #intern2-summary-description figure {
   float: right;
-  margin: 0px 0px 20px 5px;
+  margin: 0px 0px 20px 10px;
 }
 
 #intern2-summary-contribution li {
   margin-left: 20px;
   margin-top: 10px;
+}
+
+#intern2-summary-contribution li:first-of-type {
+  margin-top: 0px;
 }
 /* end INTERN_2 */
 
@@ -321,8 +325,7 @@ a {
 #article-content figure {
   float: left;
   width: 250px;
-  margin-right: 10px;
-  margin-left: 20px;
+  margin: 0px 10px -10px 20px;
 }
 
 #article-content img {
