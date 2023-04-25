@@ -134,6 +134,10 @@ nav a:hover {
   padding: 10px 10px;
 }
 
+#blank-slide {
+  visibility: hidden;
+}
+
 h1 {
   text-align: center;
   padding: 10px;
