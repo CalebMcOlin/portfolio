@@ -123,83 +123,72 @@ a {
 
 /* start HOME */
 #home {
-  padding: 0px 0px 0px 5px;
+  padding: 0;
+  margin: 0;
 }
 
-#home-media-wrapper {
-  width: 50%;
-  height: 100%;
-  position: absolute;
-}
-
-#home figure {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+#home main {
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#home figure img {
   width: 100%;
-}
-
-#home-summary-wrapper {
-  position: absolute;
-  right: 0;
-  width: 50%;
   height: 100%;
+  justify-content: space-evenly;
 }
 
-#home-summary-body {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+#home-media {
   display: flex;
+  flex-flow: column wrap;
   justify-content: center;
-  padding-top: 20%;
-  /* align-items: center; */
-}
-
-#home-summary-content {
   text-align: center;
-  font-weight: bold;
-  font-size: 3em;
+  width: 50%;
+  /* border: 1px solid pink; */
 }
 
-#home-summary-content-name {
-  font-size: 1.4em;
-  font-weight: bold;
-  margin: 20px;
+#home-media-greet,
+#home-media-iam {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  font-size: 3em;
+  /* border: 1px solid greenyellow; */
+  height: 15%;
+}
+
+#home-media-img-wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  max-height: 70%;
+  max-width: 100%;
+  padding: 0 10px 0 10px;
+  /* border: 1px solid red; */
+}
+
+#home img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+#home-content {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  text-align: center;
+  width: 50%;
+}
+
+#home-content-desc p {
+  /* border: 1px solid green; */
+  font-size: 1.5em;
+  padding-right: 10px;
 }
 
 #am-a-text-word {
   color: var(--pink);
 }
 
-.home-summary-content-keywords {
+.home-content-content-keywords {
   color: var(--pink);
-}
-
-#home-summary-content p:last-of-type {
-  position: absolute;
-  justify-content: center;
-  bottom: 6%;
-  left: 0;
-  right: 0;
-  padding: 0 10px 0 10px;
-  font-size: .33em;
-  font-weight: normal;
 }
 /* end HOME */
 
