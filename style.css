@@ -43,6 +43,15 @@ canvas {
   justify-content: space-between;
   place-items: center;
 }
+
+.underline:after {
+  content: '';
+  display: inline-block;
+  width: 70%;
+  height: 1px;
+  background-color: var(--yellow);
+  margin-bottom: 10px;
+}
 /* end GLOBAL */
 
 /* start NAVIGATION */
@@ -140,7 +149,6 @@ a {
   justify-content: center;
   text-align: center;
   width: 50%;
-  /* border: 1px solid pink; */
 }
 
 #home-media-greet,
@@ -149,7 +157,6 @@ a {
   flex-flow: column wrap;
   justify-content: center;
   font-size: 3em;
-  /* border: 1px solid greenyellow; */
   height: 15%;
 }
 
@@ -160,7 +167,6 @@ a {
   max-height: 70%;
   max-width: 100%;
   padding: 0 10px 0 10px;
-  /* border: 1px solid red; */
 }
 
 #home img {
@@ -178,7 +184,6 @@ a {
 }
 
 #home-content-desc p {
-  /* border: 1px solid green; */
   font-size: 1.5em;
   padding-right: 10px;
 }
@@ -361,15 +366,6 @@ a {
   width: 100%;
 }
 
-.website-built-underline:after {
-  content: '';
-  display: inline-block;
-  width: 70%;
-  height: 2px;
-  background-color: var(--yellow);
-  margin-bottom: 10px;
-}
-
 #website-built-tools {
   display: grid;
   padding: 0 1%;
@@ -433,15 +429,6 @@ a {
 
 #contact-social h3 {
   font-size: 1.5em;
-}
-
-.contact-social-underline:after {
-  content: '';
-  display: inline-block;
-  width: 70%;
-  height: 1px;
-  background-color: var(--yellow);
-  margin-bottom: 10px;
 }
 
 #contact-links {
@@ -518,11 +505,26 @@ a {
   }
 }
 
-@media (max-width: 501px) {
+@media (max-width: 500px) {
   /* WEBSITE */
   #website-built-tools {
     grid-template-columns: repeat(2, 49.2%);
     grid-row-gap: 3px;
+  }
+  /* HOME */
+  #home main {
+    flex-flow: column wrap;
+    align-content: center;
+    text-align: center;
+    height: auto;
+  }
+  #home-media {
+    margin: 10px 0 10px 0;
+    width: 100%;
+  }
+  #home-content {
+    padding-bottom: 10px;
+    width: 100%;
   }
 }
 
@@ -651,6 +653,33 @@ a {
   #website-built {
     position: absolute;
     bottom: 1%;
+  }
+}
+
+@media (max-width: 1090px) {
+  /* HOME */
+  #home-media-greet,
+  #home-media-iam {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 915px) {
+  /* HOME */
+  #home-media-greet,
+  #home-media-iam {
+    font-size: 2em;
+  }
+  #home-content-desc p {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 615px) {
+  /* HOME */
+  #home-media-greet,
+  #home-media-iam {
+    font-size: 1.6em;
   }
 }
 
