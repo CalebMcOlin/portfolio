@@ -97,4 +97,4 @@ _Make sure you have at least `npm: 7.#.#` and `node: 14.#.#`_
 <!-- CONTACT -->
 ## Contact
 
-- [Caleb McOlin's Linkedin](https://www.linkedin.com/in/calebmcolin/)
+- [Caleb McOlin's LinkedIn](https://www.linkedin.com/in/calebmcolin/)

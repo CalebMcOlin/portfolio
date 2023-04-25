@@ -172,7 +172,7 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
    */
   function hideSlidesDisplay() {
     let elements = document.getElementsByClassName("slides"); // get all elements
-    for (let i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length - 1; i++) {
       elements[i].style.display = "none";
     };
   };
@@ -183,9 +183,11 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
    * @param {*} x The "x" location the camera need to be located for the slide to show
    */
   function showSlidesDisply(currentSlide, x) {
+    document.getElementById("blank-slide").style.display = 'block';
     setTimeout(() => {
       hideSlidesDisplay();
       if (Math.round(camera.position.x) == Math.round(x)) {
+        document.getElementById("blank-slide").style.display = 'none';
         document.getElementById(currentSlide).style.display = 'block';
       }
     }, 4500);
