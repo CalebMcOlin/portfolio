@@ -18,6 +18,7 @@
 html,
 body {
   height: 100vh;
+  height: -webkit-fill-available;
   color: var(--yellow);
 }
 
@@ -541,6 +542,9 @@ a {
   #home-content {
     padding-bottom: 10px;
     width: 100%;
+  }
+  #home-media-img-wrapper {
+    margin: 10px 0 10px 0;
   }
 }
 
