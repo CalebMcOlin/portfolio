@@ -190,5 +190,6 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     document.getElementById("blank-slide").style.display = 'block';
   };
 
-  moveToSlide("home"); //Start on the first slide
+  //Start on the first slide
+  document.getElementById("home").style.display = 'block';
 };

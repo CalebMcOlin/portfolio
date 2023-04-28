@@ -217,6 +217,7 @@ nav a:hover {
 }
 
 #blank-slide {
+  display: none;
   visibility: hidden;
 }
 

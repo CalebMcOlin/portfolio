@@ -4,7 +4,7 @@
   <p align="center">
     "A built from scratch portfolio for Caleb McOlin."
     <br />
-    <a><strong>View Live Website Here (Comming Soon...)</strong></a>
+    <strong>View Live Website at <a href="http://calebmcolin.com/">calebmcolin.com</a></strong>
     <br />
   </p>
 </p>
