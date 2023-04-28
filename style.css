@@ -15,11 +15,28 @@
   --yellow: #F5D256;
 }
 
-html,
-body {
-  height: 100vh;
-  height: -webkit-fill-available;
+html {
+  position: relative;
+  height: 100%;
+  overflow: auto;
   color: var(--yellow);
+}
+body {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
+#bg {
+  position: absolute;
+  height: 100%;
+  overflow: auto;
+}
+
+.loaded {
+  position: relative;
+  height: 100%;
+  overflow: auto;
 }
 
 h3 {
@@ -120,10 +137,11 @@ canvas {
 
 #viewport-wrapper {
   position: relative;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   place-items: center;
+  overflow: auto;
 }
 
 #viewport-left,

@@ -30,8 +30,8 @@ cycleWords(); // Start word animation
 
 // RENDERER
 const sizes = {
-  width: window.innerWidth,
-  height: window.innerHeight
+  width: document.body.offsetWidth,
+  height: document.body.offsetHeight
 }
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
@@ -49,8 +49,9 @@ camera.position.set(-23.46, -23.46, -23.46); // Sphere1 Location
 window.addEventListener('resize', onWindowResize, false);
 function onWindowResize() {
   // Update sizes
-  sizes.width = window.innerWidth;
-  sizes.height = window.innerHeight;
+  sizes.width = document.body.offsetWidth;
+  sizes.height = document.body.offsetHeight;
+  document.body.offsetHeight;
   // Update camera
   camera.aspect = sizes.width / sizes.height;
   camera.updateProjectionMatrix();
