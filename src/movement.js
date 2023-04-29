@@ -14,6 +14,31 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
   document.getElementById('btn-L').addEventListener("click", (event) => { leftClick(event); }, false);
   document.getElementById('btn-R').addEventListener("click", (event) => { rightClick(event); }, false);
 
+  // SWIPES
+  let touchstartX = 0;
+  let touchendX = 0;
+
+  function checkDirection() {
+    // currently only activating the "swipe" if the user absolute x difference is more than 70px.
+    if (Math.abs(touchstartX - touchendX) > 70) {
+      if (touchendX < touchstartX) {
+        rightClick();
+      }
+      if (touchendX > touchstartX) {
+        leftClick()
+      }
+    }
+  };
+
+  document.addEventListener('touchstart', e => {
+    touchstartX = e.changedTouches[0].screenX;
+  });
+
+  document.addEventListener('touchend', e => {
+    touchendX = e.changedTouches[0].screenX;
+    checkDirection();
+  });
+
   /** Moves the camera to the given slide  
    * @param slide name of the slide in string form. (i.e. "home")   
    */
@@ -77,28 +102,6 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
     };
   };
 
-  /** Returns the string id for the given slide index
-   * 
-   * @param {*} index number of the slide.
-   * @returns the string name for the slide.
-   */
-  function slideIndexToSlideName(index) {
-    switch (index) {
-      case 1:
-        return "home";
-      case 2:
-        return "intern1";
-      case 3:
-        return "intern2";
-      case 4:
-        return "article";
-      case 5:
-        return "website";
-      case 6:
-        return "contact";
-    };
-  };
-
   /** Moves the slides forward by one (Slide 6 loops to Slide 1) */
   function rightClick() {
     switch (slideIndex) {
@@ -120,6 +123,28 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
       case 6:
         moveToSlide("home");
         break;
+    };
+  };
+
+  /** Returns the string id for the given slide index
+   * 
+   * @param {*} index number of the slide.
+   * @returns the string name for the slide.
+   */
+  function slideIndexToSlideName(index) {
+    switch (index) {
+      case 1:
+        return "home";
+      case 2:
+        return "intern1";
+      case 3:
+        return "intern2";
+      case 4:
+        return "article";
+      case 5:
+        return "website";
+      case 6:
+        return "contact";
     };
   };
 
@@ -192,4 +217,5 @@ export function movement(camera, controls, sphere1, sphere2, sphere3, sphere4, s
 
   //Start on the first slide
   document.getElementById("home").style.display = 'block';
+  document.getElementById("btn-1").style.backgroundColor = "#7A287C";
 };
